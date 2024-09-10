@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0px;
+    padding: 0px;
+  
+
+    --cPrim: rgb(108, 199, 138);
+    --cSegun: rgb(101, 255, 152);
+    --PrimCon: rgb(78, 134, 97);
+
+    --texto: rgb(39, 37, 37);
+    --texto2: rgb(63, 61, 61);
+
+
+}
+body{
+    background: #E8E8E8;
+}

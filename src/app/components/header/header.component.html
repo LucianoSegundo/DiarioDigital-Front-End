@@ -1,0 +1,24 @@
+<header>
+    <section class="retorno">
+            @if (autorizado) {
+
+                <app-button mensagem="encerrar sessão" imagem="retornar.png" classe="bicone"></app-button>
+               @if(caminho!= ""){
+                   <app-button mensagem="voltar" imagem="retornar.png" classe="bicone"></app-button>
+               }
+            }
+
+        </section>
+        <section class="usuario">
+            @if (autorizado){
+                <app-button mensagem="perfil" imagem="usuario.png" classe="bicone"></app-button>
+
+            }
+            @else {
+                <app-button mensagem="Entrar" imagem="conectar.png" classe="bicone"></app-button>
+
+            }
+
+        </section>
+  
+</header>
