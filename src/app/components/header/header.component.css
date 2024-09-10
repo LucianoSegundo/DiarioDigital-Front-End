@@ -1,0 +1,31 @@
+header{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+   
+    width: 100vw;
+    height: 40px;
+    background: -webkit-linear-gradient(180deg, var( --cSegun), var(--cPrim));
+
+    section{
+        min-width: 49%;
+        height: 100%;
+        gap: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .retorno{
+    justify-content: start;
+    padding-left: 10px;
+
+    }
+    .usuario{
+        justify-content: end;
+        padding-right: 10px;
+    }
+
+   
+   
+
+}
