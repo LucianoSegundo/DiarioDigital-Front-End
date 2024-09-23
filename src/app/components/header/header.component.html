@@ -3,8 +3,8 @@
             @if (autorizado) {
 
                 <app-button mensagem="encerrar sessão" imagem="retornar.png" classe="bicone"></app-button>
-               @if(caminho!= ""){
-                   <app-button mensagem="voltar" imagem="retornar.png" classe="bicone"></app-button>
+               @if(caminhoRetorno!= ""){
+                   <app-button mensagem="voltar" imagem="retornar.png" classe="bicone" (submit)="voltarPaginaAnterior()"></app-button>
                }
             }
 
