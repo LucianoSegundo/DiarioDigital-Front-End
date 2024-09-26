@@ -11,6 +11,7 @@ export class AcessoApiService {
 
   cadastrarUsu(usuario: UsuarioRequest){
     console.log(usuario)
+    console.log(environment.urlBase)
     return this.http.post(this.userUrl, usuario);
   }
 }

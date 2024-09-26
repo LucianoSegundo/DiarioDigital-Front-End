@@ -1,4 +1,4 @@
 export const environment = {
-        urlBase: "${url}",
+        urlBase: "${urlBase}",
 
 };
