@@ -14,6 +14,6 @@ export class ButtonComponent {
   @Input("classe") classe:string = '';
 
   submit(){
-    this.onSubmit.emit();
+   this.onSubmit.emit();
   }
 }
