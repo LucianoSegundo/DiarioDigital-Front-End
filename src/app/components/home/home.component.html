@@ -6,38 +6,70 @@
         <img src="imagem ilustrativa.jpg" alt="" width="400px" height="250px" />
     </section>
     <section class="clamaris">
-            <h2>Cansado <br>
-                de gastar <br>
-                dinheiro?</h2>
-            <p>Crie agora mesmo a sua conta 100% gratuita, e comece a escrever e não se preocupe mais com o custo do papel e da caneta</p>
+        <h2>Cansado <br>
+            de gastar <br>
+            dinheiro?</h2>
+        <p>Crie agora mesmo a sua conta 100% gratuita, e comece a escrever e não
+            se preocupe mais com o custo do papel e da caneta.</p>
     </section>
     <section class="se-form">
-        <div class="div-form">
+        <h3>
+            Cadastre-se
+            <br> agora mesmo
+        </h3>
+        <form class="form" id="formulario" [formGroup]="formulario">
+            @if(erroForm == true){
+            <p class="alerta">{{mensagemErro}}</p>
+            }
+            @if(suceesoform == true){
+            <p class="sucesso">Cadastro realizado com sucesso</p>
+            }
+            @if (formulario.get("nome")?.hasError("required") && formulario.get("nome")?.touched) {
+            <p class="alerta">Nome deve conter no minimo 4 letras</p>
+            }
 
-            <h3>
-                Cadastre-se
-                <br> agora mesmo
-            </h3>
-            <form class="form">
-                <fieldset>
-                    <label for="">Nome</label>
-                    <input type="text" />
-                </fieldset>
-                <fieldset>
-                    <label for="">idade</label>
-                    <input type="text" />
-                </fieldset>
-                <fieldset>
-                    <label for="">senha</label>
-                    <input type="text" />
-                </fieldset>
-                <fieldset>
-                    <label for="">confirmar senha</label>
-                    <input type="text" />
-                </fieldset>
+            <fieldset>
+                <img src="usuario.png" alt="">
+                <input type="text" placeholder="Nome" formControlName="nome" />
+            </fieldset>
 
-                <app-button mensagem="cadastrar" classe="blanco"></app-button>
-            </form>
-        </div>
+            @if ((formulario.get("idade")?.hasError("required") || formulario.get("idade")?.hasError("min")) &&
+            formulario.get("idade")?.touched) {
+            <p class="alerta">idade não deve ser inferior a 18 anos</p>
+            }
+            <fieldset>
+                <img src="usuario.png" alt="">
+                <input type="text" placeholder="Idade" formControlName="idade" />
+            </fieldset>
+
+            @if (formulario.get("palavraSegu")?.hasError("required") && formulario.get("palavraSegu")?.touched) {
+            <p class="alerta">Palavra de segurança deve conter no minimo 4 letras</p>
+            }
+
+            <fieldset>
+                <img src="usuario.png" alt="">
+                <input type="text" placeholder="palavra de Segurança" formControlName="palavraSegu" />
+            </fieldset>
+
+            @if (formulario.get("senha")?.hasError("required") && formulario.get("senha")?.touched) {
+            <p class="alerta">Senha deve conter no minimo 4 letras</p>
+            }
+
+            <fieldset>
+                <img src="senha.png" alt="">
+                <input type="password" placeholder="Senha" formControlName="senha" />
+            </fieldset>
+
+            @if(this.formulario.value.senha != this.formulario.value.confsenha) {
+            <p class="alerta">Senhas devem ser iguais</p>
+            }
+
+            <fieldset>
+                <img src="senha.png" alt="">
+                <input type="password" placeholder="Confirmar senha" formControlName="confsenha" />
+            </fieldset>
+
+            <app-button mensagem="cadastrar" classe="blanco" (submit)="Cadastrar()"></app-button>
+        </form>
     </section>
 </main>
