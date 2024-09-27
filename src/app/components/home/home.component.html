@@ -15,7 +15,9 @@
     <section class="se-form">
         <h3>
             Cadastre-se
-            <br> agora mesmo
+            <br> agora mesmo <br>
+            ou <a (click)="redirecionar();" id="direcionador">clique aqui</a>
+            <br> se já tiver conta
         </h3>
         <form class="form" id="formulario" [formGroup]="formulario">
             @if(erroForm == true){
@@ -24,8 +26,9 @@
             @if(suceesoform == true){
             <p class="sucesso">Cadastro realizado com sucesso</p>
             }
+            
             @if (formulario.get("nome")?.hasError("required") && formulario.get("nome")?.touched) {
-            <p class="alerta">Nome deve conter no minimo 4 letras</p>
+                <p class="alerta">Nome deve conter no minimo 4 letras</p>
             }
 
             <fieldset>
@@ -69,7 +72,7 @@
                 <input type="password" placeholder="Confirmar senha" formControlName="confsenha" />
             </fieldset>
 
-            <app-button mensagem="cadastrar" classe="blanco" (submit)="Cadastrar()"></app-button>
+            <app-button mensagem="cadastrar" classe="blanco" (submit)="Cadastrar()" [desabilitado]="!formulario.valid"></app-button>
         </form>
     </section>
 </main>

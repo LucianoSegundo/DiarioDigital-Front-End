@@ -28,21 +28,36 @@ main {
     input {
       padding: 5px;
       border: none;
+      
+     
     }
+  
+   
     img {
       margin: 0 5px;
       width: 15px;
       height: 15px;
     }
   }
-  .alerta {
-    display: block;
-    background-color: rgb(252, 75, 75);
-    border-radius: 5px;
-    text-align: center;
-    width: 100%;
-    padding: 20px 0;
-  }
+ 
+  #direcionador{
+    color: rgb(26, 86, 252); 
+    text-decoration: underline; 
+    cursor: pointer; 
+}
+
+#direcionador:hover {
+    color: darkblue; 
+}
+
+.alerta {
+  display: block;
+  background-color: rgb(252, 75, 75);
+  border-radius: 5px;
+  text-align: center;
+  min-width: 99%;
+  padding: 20px 0;
+}
   .sucesso {
     display: block;
     background-color: rgb(75, 202, 252);
@@ -92,34 +107,36 @@ main {
       background: -webkit-linear-gradient(0deg, var(--cSegun), var(--cPrim));
       border-radius: 10px;
 
-      .form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: auto;
-        width: 90%;
-        height: 50vh;
-        margin-top: 8vh;
-        gap: 4vh;
-
-        fieldset {
-          height: auto;
-          width: 100%;
-          border: none;
-          font-size: 20px;
-
-          input {
-            width: 95%;
-            height: 40px;
-            border: none;
-          }
-        }
-      }
       h3 {
         margin-top: 8vh;
         font-size: 40px;
       }
     }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+      width: 90%;
+      min-height: 50vh;
+      margin-top: 8vh;
+      gap: 4vh;
+
+      fieldset {
+        height: auto;
+        width: 100%;
+        border: none;
+        font-size: 20px;
+
+        input {
+          width: 95%;
+          height: 40px;
+          border: none;
+        }
+      }
+    }
+   
   }
   @media (min-width: 1080px) {
     section {
@@ -149,6 +166,7 @@ main {
         width: 60%;
       }
     }
+
     .se-form {
       display: flex;
       flex-direction: row;
@@ -166,30 +184,33 @@ main {
       border-radius: 10px;
       padding: 5%;
 
-      .form {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        min-width: 40%;
-
-        gap: 4vh;
-
-        fieldset {
-          width: 50%;
-          border: none;
-          font-size: 20px;
-
-          input {
-            border-radius: 8px;
-            width: 380px;
-            height: 40px;
-            border: none;
-          }
-        }
-      }
       h3 {
         font-size: 40px;
       }
     }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      min-width: 40%;
+
+      gap: 4vh;
+
+      fieldset {
+        width: 50%;
+        border: none;
+        font-size: 20px;
+
+        input {
+          border-radius: 8px;
+          width: 380px;
+          height: 40px;
+          border: none;
+
+        }
+      }
+    }
+
   }
 }

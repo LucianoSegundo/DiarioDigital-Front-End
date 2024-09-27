@@ -10,10 +10,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input("mensagem") mensagem:string= '';
   @Input("imagem") imagem:string= '';
-  @Output("submit") onSubmit = new EventEmitter();
   @Input("classe") classe:string = '';
+  @Input("desabilitado") desabilitado:boolean = false;
+  @Output("submit") onSubmit = new EventEmitter();
 
   submit(){
    this.onSubmit.emit();
   }
+ 
 }
