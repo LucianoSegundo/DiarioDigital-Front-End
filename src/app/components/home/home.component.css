@@ -28,36 +28,37 @@ main {
     input {
       padding: 5px;
       border: none;
-      
-     
     }
-  
-   
+
     img {
       margin: 0 5px;
       width: 15px;
       height: 15px;
     }
   }
- 
-  #direcionador{
-    color: rgb(26, 86, 252); 
-    text-decoration: underline; 
-    cursor: pointer; 
-}
+  .se-form {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
 
-#direcionador:hover {
-    color: darkblue; 
-}
+  #direcionador {
+    color: rgb(26, 86, 252);
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
-.alerta {
-  display: block;
-  background-color: rgb(252, 75, 75);
-  border-radius: 5px;
-  text-align: center;
-  min-width: 99%;
-  padding: 20px 0;
-}
+  #direcionador:hover {
+    color: darkblue;
+  }
+
+  .alerta {
+    display: block;
+    background-color: rgb(252, 75, 75);
+    border-radius: 5px;
+    text-align: center;
+    min-width: 99%;
+    padding: 20px 0;
+  }
   .sucesso {
     display: block;
     background-color: rgb(75, 202, 252);
@@ -136,7 +137,6 @@ main {
         }
       }
     }
-   
   }
   @media (min-width: 1080px) {
     section {
@@ -207,10 +207,8 @@ main {
           width: 380px;
           height: 40px;
           border: none;
-
         }
       }
     }
-
   }
 }

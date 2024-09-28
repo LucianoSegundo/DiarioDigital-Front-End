@@ -1,0 +1,141 @@
+.alerta {
+  display: block;
+  background-color: rgb(252, 75, 75);
+  border-radius: 5px;
+  text-align: center;
+  min-width: 99%;
+
+  padding: 20px 0;
+}
+
+main{
+    width: 100vw;
+    height: 93.5vh;
+}
+fieldset {
+    display: flex;
+    background-color: white;
+    border: none;
+    align-items: center;
+    border-radius: 8px;
+
+    input {
+      padding: 5px;
+      border: none;   
+     
+    }
+
+    img {
+      margin: 0 5px;
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .se-form {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  @media (max-width: 1080px) {
+  
+
+    .se-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 8vh;
+  
+        color: white;
+        font-weight: 600;
+  
+        width: 100%;
+        min-height: 40vh;
+        background: -webkit-linear-gradient(0deg, var(--cSegun), var(--cPrim));
+        border-radius: 10px;
+        padding-bottom: 6vh;
+  
+        h3 {
+          margin-top: 8vh;
+          font-size: 40px;
+        }
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        width: 90%;
+        height: auto;
+        min-height: 20vh;
+
+        gap: 5vh;
+        margin: 6vh 0;
+  
+        fieldset {
+          height: auto;
+          width: 100%;
+          border: none;
+          font-size: 20px;
+  
+          input {
+            width: 95%;
+            height: 40px;
+            border: none;
+          }
+        }
+      }
+     
+
+    }
+    @media (min-width: 1080px) {
+        main{
+          display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .se-form {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            
+            padding: 5%;
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+            background: -webkit-linear-gradient(180deg, var(--cSegun), var(--cPrim));
+      
+            width: 30vw;
+            min-height: 50vh;
+      
+            h3 {
+              font-size: 40px;
+            }
+          }
+      
+          .form {
+              display: flex;
+              min-width: 95%;
+              flex-direction: column;
+              
+              gap: 6vh;
+              height: auto;
+              margin: 8vh 0;
+      
+            fieldset {
+              width: 100%;
+              border: none;
+              font-size: 20px;
+      
+              input {
+                  width: 100%;
+                  height: 40px;
+                  border: none;
+                  border-radius: 8px;
+                  
+              }
+            }
+          }
+    }
