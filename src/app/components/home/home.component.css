@@ -29,18 +29,34 @@ main {
       padding: 5px;
       border: none;
     }
+
     img {
       margin: 0 5px;
       width: 15px;
       height: 15px;
     }
   }
+  .se-form {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+
+  #direcionador {
+    color: rgb(26, 86, 252);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #direcionador:hover {
+    color: darkblue;
+  }
+
   .alerta {
     display: block;
     background-color: rgb(252, 75, 75);
     border-radius: 5px;
     text-align: center;
-    width: 100%;
+    min-width: 99%;
     padding: 20px 0;
   }
   .sucesso {
@@ -92,32 +108,33 @@ main {
       background: -webkit-linear-gradient(0deg, var(--cSegun), var(--cPrim));
       border-radius: 10px;
 
-      .form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: auto;
-        width: 90%;
-        height: 50vh;
-        margin-top: 8vh;
-        gap: 4vh;
-
-        fieldset {
-          height: auto;
-          width: 100%;
-          border: none;
-          font-size: 20px;
-
-          input {
-            width: 95%;
-            height: 40px;
-            border: none;
-          }
-        }
-      }
       h3 {
         margin-top: 8vh;
         font-size: 40px;
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+      width: 90%;
+      min-height: 50vh;
+      margin-top: 8vh;
+      gap: 4vh;
+
+      fieldset {
+        height: auto;
+        width: 100%;
+        border: none;
+        font-size: 20px;
+
+        input {
+          width: 95%;
+          height: 40px;
+          border: none;
+        }
       }
     }
   }
@@ -149,6 +166,7 @@ main {
         width: 60%;
       }
     }
+
     .se-form {
       display: flex;
       flex-direction: row;
@@ -166,29 +184,30 @@ main {
       border-radius: 10px;
       padding: 5%;
 
-      .form {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        min-width: 40%;
-
-        gap: 4vh;
-
-        fieldset {
-          width: 50%;
-          border: none;
-          font-size: 20px;
-
-          input {
-            border-radius: 8px;
-            width: 380px;
-            height: 40px;
-            border: none;
-          }
-        }
-      }
       h3 {
         font-size: 40px;
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      min-width: 40%;
+
+      gap: 4vh;
+
+      fieldset {
+        width: 50%;
+        border: none;
+        font-size: 20px;
+
+        input {
+          border-radius: 8px;
+          width: 380px;
+          height: 40px;
+          border: none;
+        }
       }
     }
   }

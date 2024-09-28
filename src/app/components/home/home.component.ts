@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from "../header/header.component";
-import { ButtonComponent } from "../button/button.component";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioRequest } from '../../DTO/UsuarioRequest';
 import { AcessoApiService } from '../../service/acesso-api.service';
+import { ButtonComponent } from "../button/button.component";
+import { HeaderComponent } from "../header/header.component";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -12,11 +13,12 @@ import { AcessoApiService } from '../../service/acesso-api.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  constructor(private api: AcessoApiService, private router: Router) { }
+  
   erroForm: boolean = false;
   mensagemErro: string = "";
   suceesoform: boolean = false;
 
-  constructor(private api: AcessoApiService) { }
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
     senha: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -25,6 +27,10 @@ export class HomeComponent {
     confsenha: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
+  redirecionar(){
+    this.router.navigate(["/login"]);
+  }
+  
   Cadastrar() {
     if (this.formulario.valid) {
 

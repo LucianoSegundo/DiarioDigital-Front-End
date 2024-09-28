@@ -1,0 +1,27 @@
+<main>
+
+<section class="se-form">
+        <h3>Fazer Login</h3>
+    <form [formGroup]="formulario" class="form">
+        @if (formulario.get("nome")?.hasError("required") && formulario.get("nome")?.touched) {
+            <p class="alerta">Usuario não deve sernulo</p>
+        }
+        
+        <fieldset>
+            <img src="usuario.png" alt="">
+            <input type="text" placeholder="Nome" formControlName="nome" />
+        </fieldset>
+        
+        @if (formulario.get("senha")?.hasError("required") && formulario.get("senha")?.touched) {
+            <p class="alerta">Senha não deve ser nula</p>
+        }
+        
+        <fieldset>
+            <img src="senha.png" alt="">
+            <input type="password" placeholder="Senha" formControlName="senha" />
+        </fieldset>
+        
+    </form>
+    <app-button mensagem="Logar" classe="blanco" (submit)="logar()" [desabilitado]="!formulario.valid"></app-button>
+</section>
+</main>

@@ -12,7 +12,7 @@ import { ButtonComponent } from '../button/button.component';
 })
 export class HeaderComponent {
 autorizado:boolean= false;
- caminhoRetorno:string="";
+ localizacao:string="";
 
   constructor(private router: Router){
     this.router.events.pipe(
@@ -20,45 +20,11 @@ autorizado:boolean= false;
       filter(event => event instanceof NavigationEnd)
 
     ).subscribe((event: NavigationEnd) => {
-        this.gestorCabecalho(event.url);
+      this.localizacao= event.url;
       })
   }
 
-  gestorCabecalho(url: string){
-    let local:string="principal";
-    switch(url){
-      case'/home':
-      this.autorizado = false;
-      this.caminhoRetorno = ""
-      break;
-      case'/login':
-      this.autorizado = false;
-      this.caminhoRetorno = ""
-      break;
-      case'/'+local:
-      this.autorizado = true;
-      this.caminhoRetorno = ""
-      break;
-      case'/'+local+'/criarLivro':
-      this.autorizado = true;
-      this.caminhoRetorno = "/"+ local
-      break;
-      case'/'+local+'/livro':
-      this.autorizado = true;
-      this.caminhoRetorno = "/"+ local
-      break;
-      case'/'+local+'/livro/escrever':
-      this.autorizado = true;
-      this.caminhoRetorno = "/"+ local+"livro"
-      break;
-      case'/'+local+'/livro/capitulo':
-      this.autorizado = true;
-      this.caminhoRetorno = "/"+ local+"livro"
-      break;
-    }
-  }
-
-  voltarPaginaAnterior(){
-    this.router.navigate([this.caminhoRetorno]);
+  botaoEntrar(){
+    this.router.navigate(["/login"]);
   }
 }

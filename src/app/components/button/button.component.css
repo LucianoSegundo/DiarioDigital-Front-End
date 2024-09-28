@@ -4,6 +4,8 @@ button {
   padding: 5px;
   background: var(--cSegun);
   border: none;
+  height: 6vh;
+  width: 10vw;
   
   &:hover {
     border: 1px rgb(2, 2, 2) solid;
@@ -17,8 +19,7 @@ button {
 
 .blanco { 
   background: white;
-  height: 6vh;
-  width: 10vw;
+  
 }
 
 .bicone {
