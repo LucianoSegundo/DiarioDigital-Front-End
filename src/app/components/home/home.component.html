@@ -16,21 +16,27 @@
         <h3>
             Cadastre-se
             <br> agora mesmo <br>
-            ou <a (click)="redirecionar();" id="direcionador">clique aqui</a>
+            ou <a (click)="redirecionar();" class="direcionador">clique aqui</a>
             <br> se já tiver conta
         </h3>
         <form class="form" id="formulario" [formGroup]="formulario">
+            
             @if(erroForm == true){
             <p class="alerta">{{mensagemErro}}</p>
             }
+
             @if(suceesoform == true){
-            <p class="sucesso">Cadastro realizado com sucesso</p>
-            }
-            
-            @if (formulario.get("nome")?.hasError("required") && formulario.get("nome")?.touched) {
-                <p class="alerta">Nome deve conter no minimo 4 letras</p>
+                <p class="sucesso">Cadastro realizado com sucesso</p>
             }
 
+            @if(aguardando == true){
+                <p class="aguardando"> Aguardando conclusão do cadastro</p>
+            }
+            
+            @if ((formulario.get("nome")?.hasError("required") || formulario.get("nome")?.hasError("minlength")) && formulario.get("nome")?.touched) {
+                <p class="alerta">Nome deve conter no minimo 4 letras</p>
+            }
+            
             <fieldset>
                 <img src="usuario.png" alt="">
                 <input type="text" placeholder="Nome" formControlName="nome" />
@@ -40,12 +46,13 @@
             formulario.get("idade")?.touched) {
             <p class="alerta">idade não deve ser inferior a 18 anos</p>
             }
+
             <fieldset>
                 <img src="usuario.png" alt="">
-                <input type="text" placeholder="Idade" formControlName="idade" />
+                <input type="number" placeholder="Idade" formControlName="idade" />
             </fieldset>
 
-            @if (formulario.get("palavraSegu")?.hasError("required") && formulario.get("palavraSegu")?.touched) {
+            @if ((formulario.get("palavraSegu")?.hasError("required") || formulario.get("palavraSegu")?.hasError("minlength")) && formulario.get("palavraSegu")?.touched) {
             <p class="alerta">Palavra de segurança deve conter no minimo 4 letras</p>
             }
 
@@ -54,7 +61,7 @@
                 <input type="text" placeholder="palavra de Segurança" formControlName="palavraSegu" />
             </fieldset>
 
-            @if (formulario.get("senha")?.hasError("required") && formulario.get("senha")?.touched) {
+            @if ((formulario.get("senha")?.hasError("required") || formulario.get("senha")?.hasError("minlength")) && formulario.get("senha")?.touched) {
             <p class="alerta">Senha deve conter no minimo 4 letras</p>
             }
 

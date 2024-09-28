@@ -1,0 +1,57 @@
+<main>
+
+    <section class="telaLogin">
+    
+        <section class="info">
+            <h3>Recupere a sua senha</h3>
+    
+            <p>
+                Ou acabou de lembrar da sua senha?
+                 senha? <a class="direcionador" (click)="telaLogin()"> clique aqui</a>
+             </p>
+        </section>
+    <section class="se-form">
+            
+                
+                <form [formGroup]="formulario" class="form">
+                    @if (aguardando) {
+                        <p class="aguardando"> Aguardando resposta da solicitação</p>
+                    }
+                    @if (falha) {
+                        <p class="alerta"> Login não permitido</p>
+                    }
+    
+                    @if (formulario.get("nome")?.hasError("required") && formulario.get("nome")?.touched) {
+                        <p class="alerta">Usuario não deve sernulo</p>
+                    }
+                    
+                    <fieldset>
+                        <img src="usuario.png" alt="">
+                        <input type="text" placeholder="Nome" formControlName="nome" />
+                    </fieldset>
+                    
+                    @if (formulario.get("palavra")?.hasError("required") && formulario.get("palavra")?.touched) {
+                        <p class="alerta">Senha não deve ser nula</p>
+                    }
+                    
+                    <fieldset>
+                        <img src="usuario.png" alt="">
+                        <input type="password" placeholder="Palavra de Segurança" formControlName="palavra" />
+                    </fieldset>
+
+                    @if (formulario.get("novaSenha")?.hasError("required") && formulario.get("novaSenha")?.touched) {
+                        <p class="alerta">Nova senha não deve ser nula</p>
+                    }
+                    
+                    <fieldset>
+                        <img src="senha.png" alt="">
+                        <input type="password" placeholder="Nova senha" formControlName="novaSenha" />
+                    </fieldset>
+                    
+                </form>
+                <app-button mensagem="Recuperar Senha" (submit)="falha" [desabilitado]="!formulario.valid"></app-button>
+                
+            </section>
+    </section>
+    </main>
+    

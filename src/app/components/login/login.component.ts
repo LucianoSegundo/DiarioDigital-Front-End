@@ -15,6 +15,8 @@ import { LoginRequest } from '../../DTO/LoginRequest';
 export class LoginComponent {
   constructor(private api: AcessoApiService, private router: Router) { }
 
+    aguardando:boolean= false;
+    falha:boolean= false;
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
     senha: new FormControl('', [Validators.required, Validators.minLength(4)])
@@ -24,18 +26,29 @@ export class LoginComponent {
 logar(){
   if(this.formulario.valid)
     {
+      this.aguardando = true;
+      this.falha = false;
     this.api.login(this.formulario.value as LoginRequest).subscribe({
       next: (data) =>{
         let acesso = data.accessToken;
         console.log(acesso);
         localStorage.setItem("token",acesso);
+        this.aguardando = false;
         this.router.navigate(["/principal"]);
       },
       error: (error) =>{
         console.error('Erro ao fazer a requisição:', error.error.message);
+        this.aguardando = false;
+        this.falha = true;
+
+
 
       }
     })
   }
+}
+
+telaRecu(){
+  this.router.navigate(["/recuperar"]);
 }
 }

@@ -11,7 +11,7 @@
                 <app-button mensagem="perfil" imagem="usuario.png" classe="bicone"></app-button>
 
             }
-            @else if(localizacao !== "/login")
+            @else if((localizacao !== "/login") && localizacao !=="/recuperar")
              {
                 <app-button mensagem="Entrar" imagem="conectar.png" classe="bicone" (submit)="botaoEntrar()"></app-button>
 
