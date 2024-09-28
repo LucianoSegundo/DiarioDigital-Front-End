@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioRequest } from '../../DTO/UsuarioRequest';
 import { AcessoApiService } from '../../service/acesso-api.service';
 import { ButtonComponent } from "../button/button.component";
 import { HeaderComponent } from "../header/header.component";
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,8 +15,9 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   constructor(private api: AcessoApiService, private router: Router) { }
   
-  erroForm: boolean = false;
   mensagemErro: string = "";
+  erroForm: boolean = false;
+  aguardando: boolean = false;
   suceesoform: boolean = false;
 
   formulario = new FormGroup({
@@ -36,6 +37,8 @@ export class HomeComponent {
 
       if (this.formulario.value.senha == this.formulario.value.confsenha) {
 
+        this.aguardando = true;
+
         this.api.cadastrarUsu(this.formulario.value as UsuarioRequest).subscribe({
           next: (data) => {
             console.log('Dados recebidos:', data);
@@ -47,9 +50,9 @@ export class HomeComponent {
             this.mensagemErro = error.error.message;
             this.erroForm = true;
           }
-
+          
         });
-
+        this.aguardando = false;
       }
       else this.formulario.value.confsenha = null;
 

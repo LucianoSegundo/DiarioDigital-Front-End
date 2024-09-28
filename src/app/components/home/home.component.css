@@ -41,32 +41,7 @@ main {
       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   }
 
-  #direcionador {
-    color: rgb(26, 86, 252);
-    text-decoration: underline;
-    cursor: pointer;
-  }
-
-  #direcionador:hover {
-    color: darkblue;
-  }
-
-  .alerta {
-    display: block;
-    background-color: rgb(252, 75, 75);
-    border-radius: 5px;
-    text-align: center;
-    min-width: 99%;
-    padding: 20px 0;
-  }
-  .sucesso {
-    display: block;
-    background-color: rgb(75, 202, 252);
-    border-radius: 5px;
-    text-align: center;
-    width: 100%;
-    padding: 20px 0;
-  }
+  
 
   @media (max-width: 1080px) {
     .apresentação {

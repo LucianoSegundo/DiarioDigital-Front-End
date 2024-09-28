@@ -27,4 +27,5 @@ autorizado:boolean= false;
   botaoEntrar(){
     this.router.navigate(["/login"]);
   }
+  
 }
