@@ -14,7 +14,6 @@ import { LoginRequest } from '../../DTO/LoginRequest';
 })
 export class LoginComponent {
   constructor(private api: AcessoApiService, private router: Router) { }
-
     aguardando:boolean= false;
     falha:boolean= false;
   formulario = new FormGroup({
@@ -33,8 +32,12 @@ logar(){
         let acesso = data.accessToken;
         console.log(acesso);
         localStorage.setItem("token",acesso);
-        this.aguardando = false;
-        this.router.navigate(["/principal"]);
+        
+        setTimeout(()=>{
+          this.aguardando = false;
+          this.router.navigate(["/principal"]);
+        }, 550);
+
       },
       error: (error) =>{
         console.error('Erro ao fazer a requisição:', error.error.message);
