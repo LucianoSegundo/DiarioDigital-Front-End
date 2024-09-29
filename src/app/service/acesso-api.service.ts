@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { LoginRequest } from '../DTO/LoginRequest';
 import { UsuarioRequest } from '../DTO/UsuarioRequest';
 import { Observable } from 'rxjs';
+import { RecuperarSenhaRequest } from '../DTO/RecuperarSenhaReques';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,4 +20,8 @@ export class AcessoApiService {
   login(usuario: LoginRequest): Observable<any>{
     return this.http.post(this.userUrl+"login", usuario);
   }
+  recuperarSenha(usuario:RecuperarSenhaRequest){
+    return this.http.put(this.userUrl+"recuperarSenha",usuario);
+  }
+ 
 }

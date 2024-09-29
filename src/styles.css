@@ -1,17 +1,17 @@
-*{
-    margin: 0px;
-    padding: 0px;
-  
+* {
+  margin: 0px;
+  padding: 0px;
 
-    --cPrim: rgb(108, 199, 138);
-    --cSegun: rgb(101, 255, 152);
-    --PrimCon: rgb(78, 134, 97);
+  --cPrim: rgb(108, 199, 138);
+  --cSegun: rgb(101, 255, 152);
+  --PrimCon: rgb(78, 134, 97);
+  --branco: rgb(252, 252, 252);
 
-    --texto: rgb(39, 37, 37);
-    --texto2: rgb(63, 61, 61);
+  --texto: rgb(39, 37, 37);
+  --texto2: rgb(63, 61, 61);
 
 
-.alerta {
+  .alerta {
     background-color: rgb(252, 75, 75);
     display: block;
     padding: 20px 0;
@@ -35,7 +35,6 @@
     border-radius: 5px;
     text-align: center;
     color: rgb(44, 41, 41);
-   
   }
 
   .direcionador {
@@ -47,10 +46,12 @@
   .direcionador:hover {
     color: darkblue;
   }
-  
 
-
+  input:focus {
+    border: none;
+    outline: none;
+  }
 }
-body{
-    background: #E8E8E8;
+body {
+  background: #e8e8e8;
 }
