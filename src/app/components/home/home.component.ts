@@ -15,6 +15,7 @@ import { HeaderComponent } from "../header/header.component";
 export class HomeComponent {
   constructor(private api: AcessoApiService, private router: Router) { }
   
+  
   mensagemErro: string = "";
   erroForm: boolean = false;
   aguardando: boolean = false;
@@ -38,21 +39,28 @@ export class HomeComponent {
       if (this.formulario.value.senha == this.formulario.value.confsenha) {
 
         this.aguardando = true;
+        this.erroForm = false;
 
         this.api.cadastrarUsu(this.formulario.value as UsuarioRequest).subscribe({
           next: (data) => {
-            console.log('Dados recebidos:', data);
-            this.suceesoform = true;
-            this.formulario.reset();
+            console.log('Sucesso');
+            
+            this.aguardando = false;
+            setTimeout(() => {
+              this.suceesoform = true;
+              this.formulario.reset();
+              this.redirecionar();
+            },2000)
           },
           error: (error) => {
             console.error('Erro ao fazer a requisição:', error.error.message);
             this.mensagemErro = error.error.message;
             this.erroForm = true;
+            this.aguardando = false;
           }
           
         });
-        this.aguardando = false;
+        
       }
       else this.formulario.value.confsenha = null;
 

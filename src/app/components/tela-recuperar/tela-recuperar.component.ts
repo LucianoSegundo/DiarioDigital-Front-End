@@ -27,13 +27,13 @@ export class TelaRecuperarComponent {
     this.router.navigate(["/login"]);
   }
 
-  logar() {
+  recuperar() {
     if (this.formulario.valid) {
       this.aguardando = true;
       this.falha = false;
       this.api.recuperarSenha(this.formulario.value as RecuperarSenhaRequest).subscribe({
         next: (data) => {
-
+          console.log('Sucesso na recuperação');
           setTimeout(() => {
             this.aguardando = false;
             this.telaLogin();
