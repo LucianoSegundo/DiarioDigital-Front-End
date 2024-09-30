@@ -13,16 +13,13 @@ main {
     align-items: center;
     gap: 8%;
     margin-top: 4vh;
-
     width: 100vw;
-    height: auto;
   }
 
   fieldset {
     display: flex;
-    background-color: white;
-    border: none;
     align-items: center;
+    background-color: white;
     border-radius: 8px;
 
     input {
@@ -36,19 +33,23 @@ main {
       height: 15px;
     }
   }
+
   .se-form {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    
+    app-button{
+      margin-top: 4vh;
+    }
   }
 
   
-
   @media (max-width: 1080px) {
     .apresentação {
       h1 {
         font-size: 25px;
         width: 380px;
       }
+
       img {
         margin-top: 8vh;
         border-radius: 200px;
@@ -58,9 +59,11 @@ main {
     .clamaris {
       display: flex;
       flex-direction: row;
+
       h2 {
         font-size: 30px;
       }
+
       p {
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
         font-size: 20px;
@@ -74,13 +77,11 @@ main {
       justify-content: center;
       align-items: center;
       margin-top: 8vh;
-
       color: white;
       font-weight: 600;
-
       width: 100%;
       min-height: 40vh;
-      background: -webkit-linear-gradient(0deg, var(--cSegun), var(--cPrim));
+      background: linear-gradient(0deg, var(--cSegun), var(--cPrim));
       border-radius: 10px;
 
       h3 {
@@ -93,16 +94,12 @@ main {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: auto;
       width: 90%;
       min-height: 50vh;
       margin-top: 8vh;
-      gap: 4vh;
 
       fieldset {
-        height: auto;
         width: 100%;
-        border: none;
         font-size: 20px;
 
         input {
@@ -113,6 +110,7 @@ main {
       }
     }
   }
+
   @media (min-width: 1080px) {
     section {
       flex-direction: row;
@@ -124,6 +122,7 @@ main {
         font-size: 40px;
         width: 700px;
       }
+
       img {
         display: inline-block;
         border-radius: 200px;
@@ -132,9 +131,11 @@ main {
 
     .clamaris {
       gap: 3%;
+
       h2 {
         font-size: 30px;
       }
+
       p {
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
         font-size: 20px;
@@ -148,16 +149,13 @@ main {
       justify-content: space-between;
       align-items: center;
       margin-top: 20vh;
-
-      padding: 0 5%;
+      padding: 2.5%;
       color: white;
       font-weight: 600;
-
       width: 80%;
       min-height: 40vh;
-      background: -webkit-linear-gradient(0deg, var(--cSegun), var(--cPrim));
+      background: linear-gradient(0deg, var(--cSegun), var(--cPrim));
       border-radius: 10px;
-      padding: 5%;
 
       h3 {
         font-size: 40px;
@@ -167,14 +165,10 @@ main {
     .form {
       display: flex;
       flex-direction: column;
-      height: auto;
       min-width: 40%;
-
-      gap: 4vh;
-
+     
       fieldset {
         width: 50%;
-        border: none;
         font-size: 20px;
 
         input {

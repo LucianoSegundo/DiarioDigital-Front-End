@@ -17,7 +17,7 @@ export class TelaRecuperarComponent {
   falha: boolean = false;
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    palavra: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    palavraSeguranca: new FormControl('', [Validators.required, Validators.minLength(4)]),
     novaSenha: new FormControl('', [Validators.required, Validators.minLength(4)])
 
   });
@@ -52,4 +52,22 @@ export class TelaRecuperarComponent {
     }
   }
 
+  campoNome: string = "borverde";
+  campoSenha: string = "borverde";
+  campoPalavra: string = "borverde";
+
+  ConferirCampoRecu(alvo: string) {
+    if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength") || this.formulario.get(alvo)?.hasError("min")) {
+      console.log("clicado")
+      if (alvo == "nome") this.campoNome = "borVer";
+      else if (alvo == "novaSenha") this.campoSenha = "borVer";
+      else if (alvo == "palavraSeguranca") this.campoPalavra = "borVer";
+
+    } else {
+      if (alvo == "nome") this.campoNome = "borverde";
+      else if (alvo == "novaSenha") this.campoSenha = "borverde";
+      else if (alvo == "palavraSeguranca") this.campoPalavra = "borverde";
+
+    }
+  }
 }

@@ -20,66 +20,57 @@
             <br> se já tiver conta
         </h3>
         <form class="form" id="formulario" [formGroup]="formulario">
-            
+
             @if(erroForm == true){
             <p class="alerta">{{mensagemErro}}</p>
             }
 
             @if(suceesoform == true){
-                <p class="sucesso">Cadastro realizado com sucesso</p>
+            <p class="sucesso">Cadastro realizado com sucesso</p>
             }
 
             @if(aguardando == true){
-                <p class="aguardando"> Aguardando conclusão do cadastro</p>
+            <p class="aguardando"> Aguardando conclusão do cadastro</p>
             }
-            
-            @if ((formulario.get("nome")?.hasError("required") || formulario.get("nome")?.hasError("minlength")) && formulario.get("nome")?.touched) {
-                <p class="alerta">Nome deve conter no minimo 4 letras</p>
-            }
-            
-            <fieldset>
+
+            <p [className]="campoNome">Nome deve conter no minimo 4 letras</p>
+            <fieldset [className]="campoNome">
                 <img src="usuario.png" alt="">
-                <input type="text" placeholder="Nome" formControlName="nome" />
+                <input type="text" placeholder="Nome" (blur)="ConferirCampoHome('nome')" formControlName="nome" />
             </fieldset>
 
-            @if ((formulario.get("idade")?.hasError("required") || formulario.get("idade")?.hasError("min")) &&
-            formulario.get("idade")?.touched) {
-            <p class="alerta">idade não deve ser inferior a 18 anos</p>
-            }
-
-            <fieldset>
+            <p [className]="campoIdade">idade não deve ser inferior a 18 anos</p>
+            <fieldset [className]="campoIdade">
                 <img src="usuario.png" alt="">
-                <input type="number" placeholder="Idade" formControlName="idade" />
+                <input type="number" placeholder="Idade" (blur)="ConferirCampoHome('idade')" formControlName="idade" />
             </fieldset>
 
-            @if ((formulario.get("palavraSegu")?.hasError("required") || formulario.get("palavraSegu")?.hasError("minlength")) && formulario.get("palavraSegu")?.touched) {
-            <p class="alerta">Palavra de segurança deve conter no minimo 4 letras</p>
-            }
-
-            <fieldset>
+            <p [className]="campoPalavra">Palavra de segurança deve conter no minimo 4 letras</p>
+            <fieldset [className]="campoPalavra">
                 <img src="usuario.png" alt="">
-                <input type="text" placeholder="palavra de Segurança" formControlName="palavraSegu" />
+                <input type="text" placeholder="palavra de Segurança" (blur)="ConferirCampoHome('palavraSegu')"
+                    formControlName="palavraSegu" />
             </fieldset>
 
-            @if ((formulario.get("senha")?.hasError("required") || formulario.get("senha")?.hasError("minlength")) && formulario.get("senha")?.touched) {
-            <p class="alerta">Senha deve conter no minimo 4 letras</p>
-            }
+            <p [className]="campoSenha">Senha deve conter no minimo 4 letras</p>
 
-            <fieldset>
+
+            <fieldset [className]="campoSenha">
                 <img src="senha.png" alt="">
-                <input type="password" placeholder="Senha" formControlName="senha" />
+                <input type="password" placeholder="Senha" (blur)="ConferirCampoHome('senha')" formControlName="senha" />
             </fieldset>
 
-            @if(this.formulario.value.senha != this.formulario.value.confsenha) {
-            <p class="alerta">Senhas devem ser iguais</p>
-            }
+            <p [className]="campoConfSenha">Senhas devem ser iguais</p>
 
-            <fieldset>
+
+            <fieldset [className]="campoConfSenha">
                 <img src="senha.png" alt="">
-                <input type="password" placeholder="Confirmar senha" formControlName="confsenha" />
+                <input type="password" placeholder="Confirmar senha" (blur)="ConferirCampoHome('confsenha')"
+                    formControlName="confsenha" />
             </fieldset>
 
-            <app-button mensagem="cadastrar" classe="blanco" (submit)="Cadastrar()" [desabilitado]="!formulario.valid"></app-button>
+            <app-button mensagem="cadastrar" classe="blanco" (submit)="Cadastrar()"
+                [desabilitado]="!formulario.valid"></app-button>
         </form>
     </section>
 </main>
