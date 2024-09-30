@@ -1,1 +1,27 @@
-<p>principal works!</p>
+<main>
+    <section class="acesso">
+        <section class="criar">
+            @if (clique) {  <app-button mensagem="Criar Livro" classe="blanco" (submit)="clique = !clique"></app-button>  }
+            @else{
+                <form >
+                    @if (aguardando) {
+                        <p class="aguardando"> Aguardando resposta da solicitação</p>
+                        }
+                        @if (falha) {
+                        <p class="alerta"> {{mensagemErro}}</p>
+                        }
+                    <p [className]="campoTitulo">O titulo deve conter no minimo 4 letras</p>
+                    <fieldset [className]="campoTitulo">
+                        <img src="usuario.png" alt="">
+                        <input type="text" placeholder="Titulo" (blur)="CriarLivro()" formControlName="titulo" />
+                    </fieldset>
+                </form>
+                <app-button mensagem="Criar Livro" classe="blanco" (submit)="clique = !clique"></app-button>
+            }
+        </section>
+        <section class="recentes">
+            td
+        </section>
+    </section>
+    <section class="conteudo"></section>
+</main>

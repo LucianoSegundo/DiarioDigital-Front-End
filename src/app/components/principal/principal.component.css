@@ -1,0 +1,76 @@
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 93.5vh;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.acesso {
+  display: flex;
+  background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
+}
+.acesso p {
+  margin-top: 2vh;
+  min-width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.acesso fieldset {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.acesso fieldset input {
+  padding: 5px;
+  border: none;
+}
+
+.acesso fieldset img {
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
+}
+
+@media (min-width: 1080px) {
+  main {
+    flex-direction: row;
+  }
+  .acesso {
+    flex-direction: column;
+    justify-content: center;
+    width: 20vw;
+    section {
+      height: 50%;
+    }
+  }
+  .criar {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+  .criar app-button {
+    margin-top: 6vh;
+  }
+
+  .acesso fieldset {
+    width: 90%;
+    margin: 0 5%;
+    font-size: 20px;
+
+    input {
+      width: 95%;
+      height: 40px;
+      border: none;
+    }
+  }
+
+  .conteudo {
+    background-color: aqua;
+    width: 80vw;
+  }
+}
