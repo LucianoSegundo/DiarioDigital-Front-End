@@ -18,38 +18,32 @@
                 <p class="aguardando"> Aguardando resposta da solicitação</p>
                 }
                 @if (falha) {
-                <p class="alerta"> Login não permitido</p>
+                <p class="alerta"> Recuperação de senha não permitido</p>
                 }
 
-                @if (formulario.get("nome")?.hasError("required") && formulario.get("nome")?.touched) {
-                <p class="alerta">Usuario não deve sernulo</p>
-                }
-
-                <fieldset>
+                <p [className]="campoNome">Usuario não deve ser nulo</p>
+                <fieldset [className]="campoNome">
                     <img src="usuario.png" alt="">
-                    <input type="text" placeholder="Nome" formControlName="nome" />
+                    <input type="text" placeholder="Nome" (blur)="ConferirCampoRecu('nome')" formControlName="nome" />
                 </fieldset>
 
-                @if (formulario.get("palavra")?.hasError("required") && formulario.get("palavra")?.touched) {
-                <p class="alerta">Senha não deve ser nula</p>
-                }
-
-                <fieldset>
+                <p [className]="campoPalavra">Senha não deve ser nula</p>
+                <fieldset [className]="campoPalavra">
                     <img src="usuario.png" alt="">
-                    <input type="password" placeholder="Palavra de Segurança" formControlName="palavra" />
+                    <input type="password" placeholder="Palavra de Segurança" (blur)="ConferirCampoRecu('palavraSeguranca')"
+                        formControlName="palavraSeguranca" />
                 </fieldset>
 
-                @if (formulario.get("novaSenha")?.hasError("required") && formulario.get("novaSenha")?.touched) {
-                <p class="alerta">Nova senha não deve ser nula</p>
-                }
-
-                <fieldset>
+                <p [className]="campoSenha">Nova senha não deve ser nula</p>
+                <fieldset [className]="campoSenha">
                     <img src="senha.png" alt="">
-                    <input type="password" placeholder="Nova senha" formControlName="novaSenha" />
+                    <input type="password" placeholder="Nova senha" (blur)="ConferirCampoRecu('novaSenha')"
+                        formControlName="novaSenha" />
                 </fieldset>
 
             </form>
-            <app-button classe="blanco" mensagem="Recuperar Senha" (submit)="recuperar()" [desabilitado]="!formulario.valid"></app-button>
+            <app-button classe="blanco" mensagem="Recuperar Senha" (submit)="recuperar()"
+                [desabilitado]="!formulario.valid"></app-button>
 
         </section>
     </section>

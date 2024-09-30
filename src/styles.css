@@ -10,6 +10,37 @@
   --texto: rgb(39, 37, 37);
   --texto2: rgb(63, 61, 61);
 
+  p.borVer {
+    margin-top: 3vh;
+    margin-bottom: 0.4vh;
+    color: tomato;
+  }
+  p.borverde {
+    margin-top: 3vh;
+    margin-bottom: 0.4vh;
+    color: white;
+    opacity: 0%;
+  }
+  p.borbranco {
+    margin-top: 3vh;
+    margin-bottom: 0.4vh;
+    color: black;
+    opacity: 0%;
+  }
+  fieldset.borVer {
+    border: 2px solid tomato;
+    margin-top: 0;
+    input::placeholder {
+      color: tomato;
+    }
+  }
+
+  fieldset.borverde {
+    border: none;
+  }
+  fieldset.borbranco {
+    border: 1px solid black;
+  }
 
   .alerta {
     background-color: rgb(252, 75, 75);

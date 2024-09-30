@@ -2,23 +2,23 @@ main {
   width: 100vw;
   height: 93.5vh;
 }
+
 fieldset {
   display: flex;
-  background-color: white;
   align-items: center;
-  border: 1px solid black;
   border-radius: 8px;
+  background-color: white;
+}
 
-  input {
-    padding: 5px;
-    border: none;
-  }
+fieldset input {
+  padding: 5px;
+  border: none;
+}
 
-  img {
-    margin: 0 5px;
-    width: 15px;
-    height: 15px;
-  }
+fieldset img {
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
 }
 
 .se-form {
@@ -29,58 +29,51 @@ fieldset {
 app-button {
   margin-bottom: 4vh;
 }
-@media (max-width: 1080px) {
 
-  .telaLogin{
-    background: -webkit-linear-gradient(180deg, var(--cSegun), var(--cPrim));
+@media (max-width: 1080px) {
+  .telaLogin {
+    background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
     margin-top: 8vh;
     padding-bottom: 8vh;
   }
-  .info{
+
+  .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 4vh;
-    padding-bottom: 1vh;
+    padding: 4vh 0 1vh;
     gap: 4vh;
+    color: white;
+
     h3 {
       font-size: 40px;
     }
-    color: white;
   }
+
   .se-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 2vh;
-
-    
     font-weight: 600;
-
     width: 100%;
     min-height: 40vh;
-    background:rgb(249, 255, 252);
+    background: rgb(249, 255, 252);
     border-radius: 10px;
     padding-bottom: 6vh;
-
   }
 
   .form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     width: 90%;
-    height: auto;
     min-height: 20vh;
-
-    gap: 5vh;
     margin: 6vh 0;
 
     fieldset {
-      height: auto;
       width: 100%;
       font-size: 20px;
 
@@ -92,74 +85,70 @@ app-button {
     }
   }
 }
+
 @media (min-width: 1080px) {
   main {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .telaLogin{
-    display: flex;
-    align-items: end;
-    flex-direction: row;
-    justify-content: end;
 
+  .telaLogin {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     font-weight: 600;
     border-radius: 10px;
-
     color: var(--branco);
-    background: -webkit-linear-gradient(180deg, var(--cSegun), var(--cPrim));
-
+    background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
     width: 60vw;
     min-height: 70vh;
 
     h3 {
       font-size: 60px;
     }
-    .info{
+
+    .info {
       display: flex;
-      align-items: center;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       gap: 25vh;
       width: 30vw;
       height: 70vh;
 
-      p{
+      p {
         font-size: 150%;
         width: 15vw;
       }
     }
+
     .se-form {
       display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
       width: 30vw;
       min-height: 70vh;
-      background: var(--branco);    }
+      background: var(--branco);
+    }
   }
 
   .form {
     display: flex;
-    min-width: 95%;
     flex-direction: column;
-
-    gap: 6vh;
-    height: auto;
     margin: 8vh 0;
+    min-width: 95%;
 
     fieldset {
       width: 100%;
       font-size: 20px;
-      
 
       input {
         width: 100%;
         height: 40px;
         border-radius: 8px;
-        
       }
     }
   }
