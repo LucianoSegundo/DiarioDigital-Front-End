@@ -8,7 +8,6 @@ main {
 }
 .acesso {
   display: flex;
-  background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
 }
 .acesso p {
   margin-top: 2vh;
@@ -35,6 +34,47 @@ main {
   height: 15px;
 }
 
+.criar app-button {
+  margin-top: 3vh;
+}
+
+table{
+  width: 90%;
+  padding: 1%;
+  min-height: 70%;
+  background: white;
+  border-radius: 8px;
+
+  tr> td:last-child{ 
+  border-bottom: 1px solid black;
+  } 
+
+}
+
+.botoes{
+  display: flex;
+  justify-content: center;
+ 
+  margin-top: 4%;
+  width: 30%;
+  gap: 2%;
+
+  button{
+    padding: 4% 5%;
+    font-size: 110%;
+    background: var(--PrimCon);
+    border: none;
+    border-radius: 4px;
+    
+  }
+  button:hover{
+    background: var(--cPrim);
+
+  }
+  p{
+   padding: 2% 0;
+  }
+}
 @media (min-width: 1080px) {
   main {
     flex-direction: row;
@@ -42,19 +82,16 @@ main {
   .acesso {
     flex-direction: column;
     justify-content: center;
-    width: 20vw;
-    section {
-      height: 50%;
-    }
+    width: 22vw;
+    background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
+    
   }
   .criar {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-  }
-  .criar app-button {
-    margin-top: 6vh;
+    height: 40%;
   }
 
   .acesso fieldset {
@@ -69,8 +106,112 @@ main {
     }
   }
 
+  .recentes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60%;
+   h3{
+    color: white;
+    padding: 4% 0;
+   }
+  }
+
   .conteudo {
-    background-color: aqua;
-    width: 80vw;
+    width: 78vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .listas{
+    min-width: 60%;
+    min-height: 70%;
+    background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
+    padding: 0 2%;
+    table{ 
+      padding: 2%;
+      background: none;
+      width: 100%;
+      min-height: 85%;
+    }
+    h3{
+      color: white;
+      font-size: 40px;
+      margin-top: 2%;
+    }
+  }
+}
+
+@media (max-width: 1080px) {
+  .criar{
+    display: flex;
+    
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    width: 100vw;
+    height: 19vh;
+    padding: 4%;
+  }
+  .criar app-button {
+    margin-left: 3%;
+  }
+  .recentes{display: none;}
+
+  .acesso fieldset {
+    width: 100%;
+    margin: 0%;
+    font-size: 20px;
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+    }
+  }
+  .conteudo {
+    width: 100vw;
+    height: 81vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .listas{
+    width: 100%;
+    min-height: 70%;
+    background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
+    padding: 0 2%;
+    table{ 
+      padding: 2%;
+      background: none;
+      width: 100%;
+      min-height: 85%;
+    }
+    h3{
+      color: white;
+      font-size: 40px;
+      margin-top: 2%;
+    }
+  }
+
+ 
+  .botoes{
+    margin-top: 8%;
+    width: 30%;
+    gap: 4%;
+  
+    button{
+      padding: 6% 7%;
+      font-size: 160%;      
+    }
+    
+    p{
+     padding: 6% 0;
+    }
   }
 }
