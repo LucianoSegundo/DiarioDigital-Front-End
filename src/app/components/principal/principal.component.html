@@ -3,45 +3,38 @@
         <section class="criar">
             @if (clique) {  <app-button mensagem="Criar Livro" classe="blanco" (submit)="clique = !clique"></app-button>  }
             @else{
-                <form >
+                <form [formGroup]="formulario" >
                     @if (aguardando) {
                         <p class="aguardando"> Aguardando resposta da solicitação</p>
                         }
+                        @if (sucesso) {
+                            <p class="sucesso"> livro criado com sucesso</p>
+                            }
                         @if (falha) {
                         <p class="alerta"> {{mensagemErro}}</p>
                         }
                     <p [className]="campoTitulo">O titulo deve conter no minimo 4 letras</p>
                     <fieldset [className]="campoTitulo">
                         <img src="livro.png" alt="">
-                        <input type="text" placeholder="Titulo" (blur)="CriarLivro()" formControlName="titulo" />
+                        <input type="text" placeholder="Titulo" (blur)="ConferirCampoPrinci('titulo')" formControlName="titulo" />
                     </fieldset>
                 </form>
-                <app-button mensagem="Criar Livro" classe="blanco" (submit)="clique = !clique"></app-button>
+                <app-button mensagem="Criar Livro" classe="blanco" (submit)="CriarLivro()"></app-button>
             }
         </section>
         <section class="recentes">
             <h3>Recentemente utilizados</h3>
             <table>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado</td>
-                </tr>
+                @for (item of tabelaMenor; track item) {
+                    <tr class="direcionador" (click)="acessarLivro(item.id)">
+                        <td>  <img src="livro.png" alt=""></td>
+                        <td>{{item.titulo}}</td>
+                     </tr>
+                 }
+                @empty {
+                    <h3>Vocẽ não possui nenhum livro.</h3>
+                        
+                  }
             </table>
         </section>
     </section>
@@ -49,44 +42,16 @@
         <section class="listas">
             <h3> Livros</h3>
             <table>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr><tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr><tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
-                <tr class="direcionador">
-                    <td>  <img src="livro.png" alt=""></td>
-                    <td>titulo titulado titulado</td>
-                </tr>
+               @for (item of tabelaMaior; track item) {
+                   <tr class="direcionador" (click)="acessarLivro(item.id)">
+                       <td>  <img src="livro.png" alt=""></td>
+                       <td>{{item.titulo}}</td>
+                    </tr>
+                }
+                @empty {
+                    <h3>Você não possui nenhum livro</h3>
+                }
+
             </table>
         </section>
 

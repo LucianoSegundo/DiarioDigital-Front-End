@@ -1,17 +1,17 @@
 <header>
     <section class="retorno">
-            @if (autorizado) {
+            @if (((localizacao == "/home") || (localizacao == "/login") || (localizacao == "/home")) == false ) {
 
-                <app-button mensagem="encerrar sessão" imagem="retornar.png" classe="bicone"></app-button>
+                <app-button mensagem="encerrar sessão" imagem="retornar.png" classe="bicone" (submit)="botaoEncerrar()"></app-button>
             }
 
         </section>
         <section class="usuario">
-            @if (autorizado){
-                <app-button mensagem="perfil" imagem="usuario.png" classe="bicone"></app-button>
+            @if (((localizacao == "/home") || (localizacao == "/login") || (localizacao == "/home") || (localizacao == "/perfil")) == false ){
+                <app-button mensagem="perfil" imagem="usuario.png" classe="bicone" (submit)="botaoPerfil()"></app-button>
 
             }
-            @else if((localizacao !== "/login") && localizacao !=="/recuperar")
+            @else if((localizacao == "/home") )
              {
                 <app-button mensagem="Entrar" imagem="conectar.png" classe="bicone" (submit)="botaoEntrar()"></app-button>
 

@@ -11,7 +11,6 @@ import { ButtonComponent } from '../button/button.component';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-autorizado:boolean= false;
  localizacao:string="";
 
   constructor(private router: Router){
@@ -21,11 +20,25 @@ autorizado:boolean= false;
 
     ).subscribe((event: NavigationEnd) => {
       this.localizacao= event.url;
+
       })
   }
 
   botaoEntrar(){
-    this.router.navigate(["/login"]);
+    setTimeout(()=>{
+      this.router.navigate(["/login"]);
+    },500);
   }
-  
-}
+  botaoEncerrar(){
+    setTimeout(()=>{
+      localStorage.removeItem("token");
+      this.router.navigate(["/login"]);
+    },500);
+   
+  }
+  botaoPerfil(){
+    setTimeout(()=>{
+      this.router.navigate(["/perfil"]);
+    },500);
+  }
+  }
