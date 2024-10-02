@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RecuperarSenhaRequest } from '../../DTO/RecuperarSenhaReques';
+import { RecuperarSenhaRequest } from '../../DTO/request/Usuario/RecuperarSenhaReques';
 import { AcessoApiService } from '../../service/acesso-api.service';
 import { ButtonComponent } from '../button/button.component';
 

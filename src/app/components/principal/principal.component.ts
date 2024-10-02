@@ -1,31 +1,96 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AcessoApiService } from '../../service/acesso-api.service';
 import { ButtonComponent } from "../button/button.component";
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { LivroResponse } from '../../DTO/response/livro/LivroResponse';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, ReactiveFormsModule],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css'
 })
 export class PrincipalComponent {
- clique:boolean = true;
- falha:boolean = false;
- aguardando:boolean = false;
- mensagemErro:string = "";
+  constructor(private api: AcessoApiService) {
+    this.PreencherTabelas()
+    
+  }
+  clique: boolean = true;
+  falha: boolean = false;
+  sucesso: boolean = false;
+  aguardando: boolean = false;
+  mensagemErro: string = "";
+  campoTitulo: string = "borverde";
+  tabelaMaior: LivroResponse[] = [];
+  tabelaMenor: LivroResponse[] = [];
 
- formulario = new FormGroup({
-  titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
+  formulario = new FormGroup({
+    titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
 
-});
- campoTitulo:string =  "borverde";
- ConferirCampoPrinci(alvo:string){
-  if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength")) {
-    if (alvo == "titulo") this.campoTitulo = "borVer"; } 
-    else { this.campoTitulo = "borverde";}
-}
+  });
 
-  CriarLivro(){}
+
+  ConferirCampoPrinci(alvo: string) {
+    if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength")) {
+      if (alvo == "titulo") this.campoTitulo = "borVer";
+    }
+    else { this.campoTitulo = "borverde"; }
+  }
+
+
+  PreencherTabelas() {
+    let lista: LivroResponse[] = [] ;
+    this.api.listarLivro().subscribe({
+      next:(data)=>{
+        this.tabelaMaior = data.content;
+      },
+      error:(error)=>{
+        this.respostaErro(error);
+      }
+     
+    })
+   
+  }
+
+  CriarLivro() {
+    this.aguardando = true;
+    this.falha = false;
+    this.api.criarLivro(this.formulario.value.titulo as string).subscribe({
+      next: (data) => {
+        this.criarSucesso(data);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.respostaErro(error);
+      }
+    });
+  }
+
+  acessarLivro(id:number){}
+
+
+  private criarSucesso(data: LivroResponse) {
+    this.aguardando = false;
+    this.sucesso = true;
+    if(this.tabelaMaior.length <10){
+      this.tabelaMaior.push(data);
+    }
+    setTimeout(() => {
+      this.sucesso = false;
+    }, 2000)
+  }
+  private respostaErro(error: HttpErrorResponse) {
+    this.falha = true;
+    this.aguardando = false;
+    if (error.status == 401) {
+      this.mensagemErro = "sessão expirou, necessário refazer o login"
+      this.api.validarToken(error);
+    }
+    else
+      this.mensagemErro = error.error.message;
+  }
+
 
 }

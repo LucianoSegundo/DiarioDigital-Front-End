@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioRequest } from '../../DTO/UsuarioRequest';
+import { UsuarioRequest } from '../../DTO/request/Usuario/UsuarioRequest';
 import { AcessoApiService } from '../../service/acesso-api.service';
 import { ButtonComponent } from "../button/button.component";
 import { HeaderComponent } from "../header/header.component";
