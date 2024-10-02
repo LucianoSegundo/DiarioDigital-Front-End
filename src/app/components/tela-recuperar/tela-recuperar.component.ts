@@ -13,15 +13,19 @@ import { ButtonComponent } from '../button/button.component';
   styleUrl: './tela-recuperar.component.css'
 })
 export class TelaRecuperarComponent {
-  aguardando: boolean = false;
   falha: boolean = false;
+  aguardando: boolean = false;
+  campoNome: string = "borverde";
+  campoSenha: string = "borverde";
+  campoPalavra: string = "borverde";
+
+  constructor(private api: AcessoApiService, private router: Router) {}
+
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
     palavraSeguranca: new FormControl('', [Validators.required, Validators.minLength(4)]),
     novaSenha: new FormControl('', [Validators.required, Validators.minLength(4)])
-
   });
-  constructor(private api: AcessoApiService, private router: Router) { }
 
   telaLogin() {
     this.router.navigate(["/login"]);
@@ -29,10 +33,13 @@ export class TelaRecuperarComponent {
 
   recuperar() {
     if (this.formulario.valid) {
+
       this.aguardando = true;
       this.falha = false;
+
       this.api.recuperarSenha(this.formulario.value as RecuperarSenhaRequest).subscribe({
         next: (data) => {
+
           console.log('Sucesso na recuperação');
           setTimeout(() => {
             this.aguardando = false;
@@ -41,24 +48,18 @@ export class TelaRecuperarComponent {
 
         },
         error: (error) => {
+
           console.error('Erro ao fazer a requisição:', error.error.message);
           this.aguardando = false;
           this.falha = true;
-
-
 
         }
       })
     }
   }
 
-  campoNome: string = "borverde";
-  campoSenha: string = "borverde";
-  campoPalavra: string = "borverde";
-
   ConferirCampoRecu(alvo: string) {
     if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength") || this.formulario.get(alvo)?.hasError("min")) {
-      console.log("clicado")
       if (alvo == "nome") this.campoNome = "borVer";
       else if (alvo == "novaSenha") this.campoSenha = "borVer";
       else if (alvo == "palavraSeguranca") this.campoPalavra = "borVer";

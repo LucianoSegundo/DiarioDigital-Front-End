@@ -6,7 +6,7 @@ button {
   border: none;
   height: 6vh;
   width: 10vw;
-  
+
   &:hover {
     border: 1px rgb(2, 2, 2) solid;
   }
@@ -14,12 +14,10 @@ button {
   &:disabled {
     opacity: 0.6;
   }
-  
 }
 
-.blanco { 
+.blanco {
   background: white;
-  
 }
 
 .bicone {
