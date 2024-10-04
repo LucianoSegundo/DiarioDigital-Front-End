@@ -3,8 +3,8 @@ header {
   justify-content: start;
   align-items: center;
 
-  width: 100vw;
-  height: 40px;
+  width: 98.8vw;
+  height: 6vh;
   background: -webkit-linear-gradient(180deg, var(--cSegun), var(--cPrim));
 
   section {
@@ -23,4 +23,13 @@ header {
     justify-content: end;
     padding-right: 0.2%;
   }
+
+ 
+}
+@media (max-width: 1080px) {
+  header{
+    height: 40px;
+    width: 100vw;
+  } 
+
 }

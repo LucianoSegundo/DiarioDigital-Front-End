@@ -31,6 +31,9 @@ export class LoginComponent {
   telaRecu() {
     this.router.navigate(["/recuperar"]);
   }
+  telaHome() {
+    this.router.navigate(["/home"]);
+  }
 
   ConferirCampoLogin(alvo: string) {
     if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength") || this.formulario.get(alvo)?.hasError("min")) {

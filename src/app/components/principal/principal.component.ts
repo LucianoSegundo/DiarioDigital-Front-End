@@ -20,11 +20,14 @@ export class PrincipalComponent {
   aguardando: boolean = false;
   mensagemErro: string = "";
   campoTitulo: string = "borverde";
+  paginaAtual: number = 1;
+  ultimaPagina: number = 0;
   tabelaMaior: LivroResponse[] = [];
   tabelaMenor: LivroResponse[] = [];
   
   constructor(private api: AcessoApiService) {
     this.PreencherTabelas()
+      
   }
   
   formulario = new FormGroup({
@@ -40,9 +43,9 @@ export class PrincipalComponent {
   }
 
   PreencherTabelas() {
-    let lista: LivroResponse[] = [];
     this.api.listarLivro().subscribe({
       next: (data) => {
+        this.ultimaPagina = data.totalPages;
         this.tabelaMaior = data.content;
       },
       error: (error) => {
