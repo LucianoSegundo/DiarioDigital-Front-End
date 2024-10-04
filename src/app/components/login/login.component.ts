@@ -31,10 +31,12 @@ export class LoginComponent {
   telaRecu() {
     this.router.navigate(["/recuperar"]);
   }
+  telaHome() {
+    this.router.navigate(["/home"]);
+  }
 
   ConferirCampoLogin(alvo: string) {
     if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength") || this.formulario.get(alvo)?.hasError("min")) {
-      console.log("clicado")
       if (alvo == "nome") this.CampoNome = "borVer";
       else if (alvo == "senha") this.campoSenha = "borVer";
 
@@ -64,6 +66,7 @@ export class LoginComponent {
 
   private loginSucesso(data: any) {
     let acesso = data.accessToken;
+
     console.log(acesso);
     localStorage.setItem("token", acesso);
 

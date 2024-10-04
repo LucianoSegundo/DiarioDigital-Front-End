@@ -14,24 +14,26 @@ import { JsonPipe } from '@angular/common';
   styleUrl: './principal.component.css'
 })
 export class PrincipalComponent {
-  constructor(private api: AcessoApiService) {
-    this.PreencherTabelas()
-    
-  }
   clique: boolean = true;
   falha: boolean = false;
   sucesso: boolean = false;
   aguardando: boolean = false;
   mensagemErro: string = "";
   campoTitulo: string = "borverde";
+  paginaAtual: number = 1;
+  ultimaPagina: number = 0;
   tabelaMaior: LivroResponse[] = [];
   tabelaMenor: LivroResponse[] = [];
-
+  
+  constructor(private api: AcessoApiService) {
+    this.PreencherTabelas()
+      
+  }
+  
   formulario = new FormGroup({
     titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
 
   });
-
 
   ConferirCampoPrinci(alvo: string) {
     if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength")) {
@@ -40,19 +42,18 @@ export class PrincipalComponent {
     else { this.campoTitulo = "borverde"; }
   }
 
-
   PreencherTabelas() {
-    let lista: LivroResponse[] = [] ;
     this.api.listarLivro().subscribe({
-      next:(data)=>{
+      next: (data) => {
+        this.ultimaPagina = data.totalPages;
         this.tabelaMaior = data.content;
       },
-      error:(error)=>{
+      error: (error) => {
         this.respostaErro(error);
       }
-     
+
     })
-   
+
   }
 
   CriarLivro() {
@@ -68,13 +69,12 @@ export class PrincipalComponent {
     });
   }
 
-  acessarLivro(id:number){}
-
+  acessarLivro(id: number) { }
 
   private criarSucesso(data: LivroResponse) {
     this.aguardando = false;
     this.sucesso = true;
-    if(this.tabelaMaior.length <10){
+    if (this.tabelaMaior.length < 10) {
       this.tabelaMaior.push(data);
     }
     setTimeout(() => {
@@ -91,6 +91,5 @@ export class PrincipalComponent {
     else
       this.mensagemErro = error.error.message;
   }
-
 
 }

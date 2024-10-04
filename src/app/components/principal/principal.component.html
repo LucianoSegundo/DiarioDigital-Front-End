@@ -19,29 +19,15 @@
                         <input type="text" placeholder="Titulo" (blur)="ConferirCampoPrinci('titulo')" formControlName="titulo" />
                     </fieldset>
                 </form>
-                <app-button mensagem="Criar Livro" classe="blanco" (submit)="CriarLivro()"></app-button>
+                <app-button mensagem="Salvarr Livro" classe="blanco" (submit)="CriarLivro()"></app-button>
             }
         </section>
-        <section class="recentes">
-            <h3>Recentemente utilizados</h3>
-            <table>
-                @for (item of tabelaMenor; track item) {
-                    <tr class="direcionador" (click)="acessarLivro(item.id)">
-                        <td>  <img src="livro.png" alt=""></td>
-                        <td>{{item.titulo}}</td>
-                     </tr>
-                 }
-                @empty {
-                    <h3>Vocẽ não possui nenhum livro.</h3>
-                        
-                  }
-            </table>
-        </section>
+      
     </section>
     <section class="conteudo">
         <section class="listas">
             <h3> Livros</h3>
-            <table>
+            <table >
                @for (item of tabelaMaior; track item) {
                    <tr class="direcionador" (click)="acessarLivro(item.id)">
                        <td>  <img src="livro.png" alt=""></td>
@@ -55,14 +41,16 @@
             </table>
         </section>
 
+        
         <section class="botoes">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
+            <button>{{paginaAtual-2}}</button>
+            <button>{{paginaAtual-1}}</button>
+            <button class="paginaAtual">{{paginaAtual}}</button>
+            <button>{{paginaAtual+1}}</button>
+            <button>{{paginaAtual+2}}</button>
             <p>...</p>
-            <button>10</button>
+            <button>{{ultimaPagina}}</button>
+        
         </section>
     </section>
 </main>

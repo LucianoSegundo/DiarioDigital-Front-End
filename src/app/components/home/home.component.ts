@@ -5,6 +5,7 @@ import { UsuarioRequest } from '../../DTO/request/Usuario/UsuarioRequest';
 import { AcessoApiService } from '../../service/acesso-api.service';
 import { ButtonComponent } from "../button/button.component";
 import { HeaderComponent } from "../header/header.component";
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -13,13 +14,18 @@ import { HeaderComponent } from "../header/header.component";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private api: AcessoApiService, private router: Router) { }
-
 
   mensagemErro: string = "";
   erroForm: boolean = false;
   aguardando: boolean = false;
   suceesoform: boolean = false;
+  campoNome: string = "borverde";
+  campoIdade: string = "borverde";
+  campoSenha: string = "borverde";
+  campoPalavra: string = "borverde";
+  campoConfSenha: string = "borverde";
+
+  constructor(private api: AcessoApiService, private router: Router) { }
 
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -43,37 +49,18 @@ export class HomeComponent {
 
         this.api.cadastrarUsu(this.formulario.value as UsuarioRequest).subscribe({
           next: (data) => {
-            console.log('Sucesso');
-
-            this.aguardando = false;
-            setTimeout(() => {
-              this.suceesoform = true;
-              this.formulario.reset();
-              this.redirecionar();
-            }, 2000)
+            this.sucessoCadas();
           },
           error: (error) => {
-            console.error('Erro ao fazer a requisição:', error.error.message);
-            this.mensagemErro = error.error.message;
-            this.erroForm = true;
-            this.aguardando = false;
+            this.erroCad(error);
           }
-
         });
-
       }
       else this.formulario.value.confsenha = null;
 
     }
   }
 
-  campoNome: string = "borverde";
-  campoIdade: string = "borverde";
-  campoSenha: string = "borverde";
-  campoPalavra: string = "borverde";
-  campoConfSenha: string = "borverde";
-
-  //
   ConferirCampoHome(alvo: string) {
     if (alvo == "confsenha") {
 
@@ -99,4 +86,23 @@ export class HomeComponent {
     }
   }
 
+  sucessoCadas() {
+    console.log('Sucesso');
+
+    this.aguardando = false;
+    setTimeout(() => {
+      this.suceesoform = true;
+      this.formulario.reset();
+      this.redirecionar();
+    }, 2000)
+  }
+
+  erroCad(error: HttpErrorResponse) {
+    {
+      console.error('Erro ao fazer a requisição:', error.error.message);
+      this.mensagemErro = error.error.message;
+      this.erroForm = true;
+      this.aguardando = false;
+    }
+  }
 }
