@@ -4,6 +4,7 @@ import { PrincipalComponent } from './components/principal/principal.component';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TelaRecuperarComponent } from './components/tela-recuperar/tela-recuperar.component';
+import { LivroComponent } from './components/livro/livro.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,5 +12,7 @@ export const routes: Routes = [
     { path: 'principal', component: PrincipalComponent},
     { path: 'login', component: LoginComponent},
     { path: 'recuperar', component: TelaRecuperarComponent},
+    { path: 'livros/:livroID', component: LivroComponent},
+
     { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];

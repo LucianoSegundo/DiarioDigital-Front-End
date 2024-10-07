@@ -48,8 +48,8 @@ export class AcessoApiService {
     return this.http.post<LivroResponse>(`${this.livroUrl}criar`, titulo, { headers: this.createHeaders() });
   }
 
-  listarLivro():Observable<PaginacaoLivroResponse> {
-    return this.http.get<PaginacaoLivroResponse>(this.livroUrl + 'listar', { headers: this.createHeaders() });
+  listarLivro(pagina:number = 0):Observable<PaginacaoLivroResponse> {
+    return this.http.get<PaginacaoLivroResponse>(this.livroUrl + 'listar?pagina='+pagina, { headers: this.createHeaders() });
   }
 
   //Lidando com Capitulos
