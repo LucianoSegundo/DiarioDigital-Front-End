@@ -14,7 +14,7 @@ export class HeaderComponent {
   localizacao: string = "";
 
   constructor(private router: Router) {
-   this.coletarRota();
+    this.coletarRota();
   }
 
   botaoEntrar() {
@@ -22,7 +22,7 @@ export class HeaderComponent {
       this.router.navigate(["/login"]);
     }, 500);
   }
-  
+
   botaoEncerrar() {
     setTimeout(() => {
       localStorage.removeItem("token");
@@ -37,7 +37,7 @@ export class HeaderComponent {
     }, 500);
   }
 
-  coletarRota(){
+  coletarRota() {
     this.router.events.pipe(
 
       filter(event => event instanceof NavigationEnd)

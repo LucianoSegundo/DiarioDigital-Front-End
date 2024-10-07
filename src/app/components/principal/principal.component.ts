@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { LivroResponse } from '../../DTO/response/livro/LivroResponse';
 import { AcessoApiService } from '../../service/acesso-api.service';
 import { ButtonComponent } from "../button/button.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
@@ -31,7 +32,7 @@ export class PrincipalComponent {
   baseDados: LivroResponse[] = [];
   colunas: string[] = ["icone", "titulo", "capitulos"]
 
-  constructor(private api: AcessoApiService) {
+  constructor(private api: AcessoApiService, private router:Router) {
     this.PreencherTabelas();
 
   }
@@ -71,6 +72,15 @@ export class PrincipalComponent {
   }
   acessarLivro(id: number) {
     console.log(id);
+    this.api.verificarLivro(id).subscribe({
+      next :(data) =>{
+        this.router.navigate(["livros/"+id])
+        
+      },
+      error: (error: HttpErrorResponse)=>{
+        this.respostaErro(error);
+      }
+    })
   }
   
   paginar(evento: PageEvent) {
