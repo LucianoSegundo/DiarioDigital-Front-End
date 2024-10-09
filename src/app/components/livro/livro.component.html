@@ -1,1 +1,20 @@
-<p>livro works!</p>
+<main>
+    <section class="gestaoDeLivro">
+        <button [disabled]="blista" (click)="trocarConteudo('lista')">
+            <img src="escrever.png">
+            Lista
+        </button>
+        <button [disabled]="bcriar" (click)="trocarConteudo('criar')">
+            <img src="escrever.png" alt="">
+            Criar Capitulo
+        </button>
+        <button [disabled]="bopcoes" (click)="trocarConteudo('opcoes')">
+            <img src="escrever.png" alt="">
+            Opções
+        </button>
+
+    </section>
+    <section class="conteudo">
+        <router-outlet></router-outlet>
+    </section>
+</main>

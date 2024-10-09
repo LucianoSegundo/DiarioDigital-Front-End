@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioRequest } from '../../DTO/request/Usuario/UsuarioRequest';
-import { AcessoApiService } from '../../service/acesso-api.service';
+import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ButtonComponent } from "../button/button.component";
 import { HeaderComponent } from "../header/header.component";
-import { HttpErrorResponse } from '@angular/common/http';
+import { AcessoApiService } from '../../service/acesso-api.service';
+import { UsuarioRequest } from '../../DTO/request/Usuario/UsuarioRequest';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -19,6 +20,7 @@ export class HomeComponent {
   erroForm: boolean = false;
   aguardando: boolean = false;
   suceesoform: boolean = false;
+  
   campoNome: string = "borverde";
   campoIdade: string = "borverde";
   campoSenha: string = "borverde";
@@ -34,10 +36,6 @@ export class HomeComponent {
     idade: new FormControl(0, [Validators.required, Validators.min(18)]),
     confsenha: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
-
-  redirecionar() {
-    this.router.navigate(["/login"]);
-  }
 
   Cadastrar() {
     if (this.formulario.valid) {
@@ -59,6 +57,10 @@ export class HomeComponent {
       else this.formulario.value.confsenha = null;
 
     }
+  }
+
+  redirecionar() {
+    this.router.navigate(["/login"]);
   }
 
   ConferirCampoHome(alvo: string) {
