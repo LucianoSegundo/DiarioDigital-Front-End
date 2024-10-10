@@ -21,7 +21,9 @@ main {
   align-items: center;
   border-radius: 8px;
   background-color: white;
-  input{ border-radius: 8px;}
+  input {
+    border-radius: 8px;
+  }
 }
 
 .acesso fieldset input {
@@ -35,45 +37,10 @@ main {
   height: 15px;
 }
 
-.criar app-button {
+.interacao app-button {
   margin-top: 3vh;
 }
 
-table {
-  width: 90%;
-  padding: 1%;
-  min-height: 70%;
-  background: white;
-  border-radius: 8px;
-
-  tr > td:last-child {
-    border-bottom: 1px solid black;
-    width: 40vw;
-  }
-}
-
-.botoes {
-  display: flex;
-  justify-content: center;
-
-  margin-top: 4%;
-  width: 30%;
-  gap: 2%;
-
-  button {
-    padding: 4% 5%;
-    font-size: 110%;
-    background: var(--PrimCon);
-    border: none;
-    border-radius: 4px;
-  }
-  button:hover {
-    background: var(--cPrim);
-  }
-  p {
-    padding: 2% 0;
-  }
-}
 @media (min-width: 1080px) {
   main {
     flex-direction: row;
@@ -81,25 +48,36 @@ table {
   .acesso {
     flex-direction: column;
     justify-content: start;
+    padding-top:2vh ;
+
     width: 22vw;
-    background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
+    background: linear-gradient(
+      135deg,
+      var(--cPrim),
+      var(--cPrim),
+      var(--cSegun),
+      var(--cSegun),
+      var(--cSegun)
+    );
   }
-  .criar {
+  .interacao {
     display: flex;
     flex-direction: column-reverse;
     justify-content: start;
     align-items: center;
     height: 40%;
 
-    p{font-size: 2.3vh;}
+    p {
+      font-size: 2.3vh;
+    }
   }
 
   .acesso fieldset {
     width: 90%;
-    margin: 0 5%;
+    margin: 5% 5%;
     font-size: 2.5vh;
     border-radius: 1.5vh;
-    
+
     input {
       font-size: 2.5vh;
       width: 95%;
@@ -119,54 +97,98 @@ table {
     align-items: center;
   }
 
-  .listas {
-    min-width: 60%;
-    min-height: 70%;
-    background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
-    padding: 0 2%;
-    table {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      padding: 2%;
+  section.listas {
+    min-width: 70%;
+    min-height: 75%;
+    border-radius: 3vh;
+    background: linear-gradient(
+      135deg,
+      var(--cPrim),
+      var(--cSegun),
+      var(--cSegun),
+      var(--cSegun),
+      var(--cSegun)
+    );
+    padding: 2.5%;
+  }
 
-      background: none;
-      width: 100%;
-      min-height: 85%;
-      tr {
-        width: 100%;
-        margin-top: 0.4%;
-      }
-      tr > td:last-child {
-        width: 41vw;
-      }
-    }
-    h3 {
-      color: white;
-      font-size: 6.2vh;
-      margin-top: 2%;
-    }
+  table {
+    width: 100%;
+    font-size: 2.5vh;
+  }
+  .listinha {
+    width: 100%;
+    background-color: rgb(250, 249, 253);
+    height: 88%;
+  }
+  .cabeçalho {
+    height: 5.8vh;
+  }
+  .linha {
+    height: 5.8vh;
+    font-size: 1.8vh;
+  }
+
+  .linha:hover {
+    font-weight: 600;
+  }
+  .linha:hover {
+    background-color: rgb(238, 233, 233);
+  }
+
+  .mat-column-icone {
+    width: 10%;
+    padding: 0 2%;
+  }
+
+  .mat-column-icone img {
+    width: 3.5vh;
+  }
+  .mat-column-titulo {
+    width: 78%;
+    padding: 0;
+  }
+  .mat-column-capitulos {
+    width: 12%;
+    padding: 0 2%;
   }
 }
 
 @media (max-width: 1080px) {
-  .criar {
+  main {
+    width: 98vw;
+    gap: 1vh;
+  }
+  .interacao {
     display: flex;
 
-    flex-direction: row;
-    justify-content: end;
+    flex-direction: row-reverse;
+    justify-content: space-between;
     align-items: end;
-    width: 100vw;
-    height: 19vh;
-    padding: 4%;
+    width: 100%;
+    height: 100%;
   }
-  .criar app-button {
+  .interacao app-button {
     margin-left: 3%;
   }
-
+  .acesso {
+    flex-direction: column;
+    justify-content: end;
+    height: 18vh;
+    &:first-child {
+      margin-top: 10px;
+    }
+  }
+  .acesso form {
+    width: 250px;
+    height: auto;
+  }
+  .acesso form p.alerta {
+    margin-top: 10px;
+  }
   .acesso fieldset {
     width: 100%;
-    margin: 0%;
+    margin-top: 10px;
     font-size: 20px;
 
     input {
@@ -177,7 +199,7 @@ table {
   }
   .conteudo {
     width: 100vw;
-    height: 81vh;
+    height: 68vh;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -186,28 +208,49 @@ table {
 
   .listas {
     width: 100%;
-    min-height: 70%;
+    height: 100%;
     background: linear-gradient(180deg, var(--cSegun), var(--cPrim));
-    padding: 0 2%;
-    table {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: center;
-      padding: 2%;
 
-      background: none;
+    table {
       width: 100%;
-      min-height: 85%;
-      tr {
-        width: 100%;
-        margin-top: 0.4%;
-      }
-      tr > td:last-child {
-        width: 8vw;
-        padding-left: 1vw;
-      }
+      font-size: 2.5vh;
+      color: white;
+      background: none;
     }
+    table tr {
+      color: white;
+
+      font-weight: 900;
+    }
+    .listinha {
+      width: 100%;
+      height: 92%;
+    }
+    .linha {
+      height: 48px;
+    }
+    .mat-mdc-cell {
+      border-bottom-color: white;
+      border-width: 2px;
+    }
+    .mat-mdc-header-cell {
+      border-bottom-color: white;
+    }
+
+    .mat-column-icone {
+      width: 8%;
+      padding: 0 8px;
+    }
+    .mat-column-titulo {
+      width: 72%;
+      padding: 0;
+    }
+    .mat-column-capitulos {
+      width: 11%;
+      padding: 0 ;
+      padding-left: 4px;
+    }
+
     h3 {
       color: white;
       font-size: 40px;

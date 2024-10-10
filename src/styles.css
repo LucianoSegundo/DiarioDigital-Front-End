@@ -2,9 +2,9 @@
   margin: 0px;
   padding: 0px;
 
-  --cPrim: rgb(108, 199, 138);
-  --cSegun: rgb(101, 255, 152);
-  --PrimCon: rgb(90, 173, 118);
+  --cPrim: rgb(49, 231, 192);
+  --cSegun: rgb(101, 255, 178);
+  --PrimCon:rgb(87, 209, 183);
   --branco: rgb(252, 252, 252);
 
   --texto: rgb(39, 37, 37);
@@ -49,11 +49,12 @@
     min-width: 99%;
     border-radius: 5px;
     text-align: center;
+
   }
   .sucesso {
     background-color: rgb(75, 202, 252);
     display: block;
-    padding: 20px 0;
+    padding: 15px 0;
     min-width: 99%;
     border-radius: 5px;
     text-align: center;
@@ -61,7 +62,7 @@
   .aguardando {
     background-color: rgb(252, 240, 75);
     display: block;
-    padding: 20px 0;
+    padding: 15px 0;
     min-width: 99%;
     border-radius: 5px;
     text-align: center;
@@ -86,3 +87,6 @@
 body {
   background: #e8e8e8;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

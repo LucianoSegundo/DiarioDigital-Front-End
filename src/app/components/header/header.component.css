@@ -3,7 +3,7 @@ header {
   justify-content: start;
   align-items: center;
 
-  width: 98.8vw;
+  width: 100vw;
   height: 6vh;
   background: -webkit-linear-gradient(180deg, var(--cSegun), var(--cPrim));
 
@@ -32,4 +32,10 @@ header {
     width: 100vw;
   } 
 
+}
+[class^="/homeclasse"] {
+  width: 98.8vw;
+}
+[class^="/classe"] {
+  width: 98.8vw;
 }

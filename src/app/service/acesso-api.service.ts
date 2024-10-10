@@ -10,15 +10,17 @@ import { Router } from '@angular/router';
 import { PaginacaoLivroResponse } from '../DTO/response/livro/PaginacaoLivroResponse';
 import { LoginResponse } from '../DTO/response/usuario/LoginResponse';
 import { UsuarioResponse } from '../DTO/response/usuario/UsuarioResponse';
+import { PaginacaoCapituloResponse } from '../DTO/response/capitulo/PaginacaoCapituloResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AcessoApiService {
-  private userUrl: string = `${environment.urlBase}/api/v1/usuario/`;
-  private livroUrl: string = `${environment.urlBase}/api/v1/livro/`;
+  private userUrl: string = environment.urlBase + '/api/v1/usuario';
+  private livroUrl: string = environment.urlBase + '/api/v1/livro';
+  private capituloUrl: string = environment.urlBase + '/api/v1/capitulo';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   private createHeaders(): HttpHeaders {
     const token: string = localStorage.getItem('token') || '';
@@ -35,21 +37,28 @@ export class AcessoApiService {
   }
 
   login(usuario: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.userUrl}login`, usuario);
+    return this.http.post<LoginResponse>(this.userUrl + '/login', usuario);
   }
 
   recuperarSenha(usuario: RecuperarSenhaRequest): Observable<UsuarioResponse> {
-    return this.http.put<UsuarioResponse>(`${this.userUrl}recuperarSenha`, usuario);
+    return this.http.put<UsuarioResponse>(this.userUrl + '/recuperarSenha', usuario);
   }
 
   //Lidando com Livros
 
   criarLivro(titulo: string): Observable<LivroResponse> {
-    return this.http.post<LivroResponse>(`${this.livroUrl}criar`, titulo, { headers: this.createHeaders() });
+    return this.http.post<LivroResponse>(this.livroUrl + '/criar', titulo, { headers: this.createHeaders() });
+  }
+  verificarLivro(livroId: number): Observable<LivroResponse> {
+    return this.http.get<LivroResponse>(this.livroUrl + '/' + livroId, { headers: this.createHeaders() });
   }
 
-  listarLivro():Observable<PaginacaoLivroResponse> {
-    return this.http.get<PaginacaoLivroResponse>(this.livroUrl + 'listar', { headers: this.createHeaders() });
+  listarLivro(pagina: number = 0): Observable<PaginacaoLivroResponse> {
+    return this.http.get<PaginacaoLivroResponse>(this.livroUrl + '/listar?pagina=' + pagina, { headers: this.createHeaders() });
+  }
+
+  listarCapitulos(IdLivro: string, pagina: number = 0): Observable<PaginacaoCapituloResponse> {
+    return this.http.get<PaginacaoCapituloResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina, { headers: this.createHeaders() });
   }
 
   //Lidando com Capitulos

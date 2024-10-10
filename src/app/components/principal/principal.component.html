@@ -1,56 +1,62 @@
 <main>
     <section class="acesso">
-        <section class="criar">
-            @if (clique) {  <app-button mensagem="Criar Livro" classe="blanco" (submit)="clique = !clique"></app-button>  }
+        <section class="interacao">
+            @if (criarClique) {  <app-button mensagem="Criar Livro" classe="blanco" (submit)="criarClique = !criarClique"></app-button>  }
             @else{
+                <app-button mensagem="Salvar Livro" classe="blanco" (submit)="CriarLivro()" [desabilitado]="!formulario.valid"></app-button>
                 <form [formGroup]="formulario" >
-                    @if (aguardando) {
+                    @if (aguardandoCriacao) {
                         <p class="aguardando"> Aguardando resposta da solicitação</p>
                         }
-                        @if (sucesso) {
+                        @if (sucessoCriacao) {
                             <p class="sucesso"> livro criado com sucesso</p>
                             }
-                        @if (falha) {
+                        @if (falhaCriacao) {
                         <p class="alerta"> {{mensagemErro}}</p>
                         }
-                    <p [className]="campoTitulo">O titulo deve conter no minimo 4 letras</p>
                     <fieldset [className]="campoTitulo">
-                        <img src="livro.png" alt="">
-                        <input type="text" placeholder="Titulo" (blur)="ConferirCampoPrinci('titulo')" formControlName="titulo" />
+                        <img src="livro.png" alt="icone do livro">
+                        <input type="text" placeholder="Titulo" formControlName="titulo" />
                     </fieldset>
                 </form>
-                <app-button mensagem="Salvarr Livro" classe="blanco" (submit)="CriarLivro()"></app-button>
             }
         </section>
-      
+
     </section>
     <section class="conteudo">
         <section class="listas">
-            <h3> Livros</h3>
-            <table >
-               @for (item of tabelaMaior; track item) {
-                   <tr class="direcionador" (click)="acessarLivro(item.id)">
-                       <td>  <img src="livro.png" alt=""></td>
-                       <td>{{item.titulo}}</td>
-                    </tr>
-                }
-                @empty {
-                    <h3>Você não possui nenhum livro</h3>
-                }
+            <div class="listinha">
+           <table mat-table [dataSource]="baseDados">
 
-            </table>
-        </section>
+            <ng-container matColumnDef="icone">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef=""><img src="livro.png" alt="icone do livro"></td>
+            </ng-container>
+            <ng-container matColumnDef="titulo">
+                <th mat-header-cell *matHeaderCellDef>Título</th>
+                <td mat-cell *matCellDef="let element">{{element.titulo}}</td>
+            </ng-container>
+            <ng-container matColumnDef="capitulos">
+                <th mat-header-cell *matHeaderCellDef>N. Cap</th>
+                <td mat-cell *matCellDef="let element">{{element.numeroCapitulos}}</td>
+            </ng-container>
 
-        
-        <section class="botoes">
-            <button>{{paginaAtual-2}}</button>
-            <button>{{paginaAtual-1}}</button>
-            <button class="paginaAtual">{{paginaAtual}}</button>
-            <button>{{paginaAtual+1}}</button>
-            <button>{{paginaAtual+2}}</button>
-            <p>...</p>
-            <button>{{ultimaPagina}}</button>
-        
+            <tr mat-header-row *matHeaderRowDef="colunas" class="cabeçalho"></tr>
+            <tr mat-row  
+                *matRowDef="let row; columns: colunas;let element;" 
+                (click)="acessarLivro(element.id)" 
+                class="linha"></tr>
+
+           </table>
+        </div>
+           <mat-paginator 
+          [length]="tamanho"
+          [pageSize]="pageSize"
+          [hidePageSize]="true"
+          (page)="paginar($event)"
+          [showFirstLastButtons]="true"
+           aria-label="seletorPagina"
+           ></mat-paginator>
         </section>
     </section>
 </main>

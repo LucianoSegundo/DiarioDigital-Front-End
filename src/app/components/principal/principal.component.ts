@@ -1,52 +1,67 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { LivroResponse } from '../../DTO/response/livro/LivroResponse';
 import { AcessoApiService } from '../../service/acesso-api.service';
 import { ButtonComponent } from "../button/button.component";
-import { HttpErrorResponse } from '@angular/common/http';
-import { LivroResponse } from '../../DTO/response/livro/LivroResponse';
-import { JsonPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [ButtonComponent, ReactiveFormsModule],
+  imports: [ButtonComponent, ReactiveFormsModule, MatTableModule, MatPaginatorModule],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css'
 })
 export class PrincipalComponent {
-  clique: boolean = true;
-  falha: boolean = false;
-  sucesso: boolean = false;
-  aguardando: boolean = false;
+
+  criarClique: boolean = true;
+  falhaCriacao: boolean = false;
+  sucessoCriacao: boolean = false;
+  aguardandoCriacao: boolean = false;
+
   mensagemErro: string = "";
   campoTitulo: string = "borverde";
-  paginaAtual: number = 1;
-  ultimaPagina: number = 0;
-  tabelaMaior: LivroResponse[] = [];
-  tabelaMenor: LivroResponse[] = [];
-  
-  constructor(private api: AcessoApiService) {
-    this.PreencherTabelas()
-      
+
+  tamanho: number = 0;
+  pageSize: number = 1;
+  paginaAtual: number = 0;
+
+  baseDados: LivroResponse[] = [];
+  colunas: string[] = ["icone", "titulo", "capitulos"]
+
+  constructor(private api: AcessoApiService, private router:Router) {
+    this.PreencherTabelas();
+
   }
-  
+
   formulario = new FormGroup({
     titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
 
   });
 
-  ConferirCampoPrinci(alvo: string) {
-    if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength")) {
-      if (alvo == "titulo") this.campoTitulo = "borVer";
+  CriarLivro() {
+    if (this.formulario.value != null) {
+      this.aguardandoCriacao = true;
+      this.falhaCriacao = false;
+      this.api.criarLivro(this.formulario.value.titulo as string).subscribe({
+        next: (data) => {
+          this.criarSucesso(data);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.respostaErro(error);
+        }
+      });
     }
-    else { this.campoTitulo = "borverde"; }
   }
 
-  PreencherTabelas() {
-    this.api.listarLivro().subscribe({
+  PreencherTabelas(index: number = 0) {
+    this.api.listarLivro(index).subscribe({
       next: (data) => {
-        this.ultimaPagina = data.totalPages;
-        this.tabelaMaior = data.content;
+        this.tamanho = data.totalPages;
+        this.baseDados = data.content;
       },
       error: (error) => {
         this.respostaErro(error);
@@ -55,41 +70,51 @@ export class PrincipalComponent {
     })
 
   }
-
-  CriarLivro() {
-    this.aguardando = true;
-    this.falha = false;
-    this.api.criarLivro(this.formulario.value.titulo as string).subscribe({
-      next: (data) => {
-        this.criarSucesso(data);
+  acessarLivro(id: number) {
+    console.log(id);
+    this.api.verificarLivro(id).subscribe({
+      next :(data) =>{
+        this.router.navigate(["livros/"+id])
+        
       },
-      error: (error: HttpErrorResponse) => {
+      error: (error: HttpErrorResponse)=>{
         this.respostaErro(error);
       }
-    });
+    })
+  }
+  
+  paginar(evento: PageEvent) {
+    this.paginaAtual = evento.pageIndex;
+    this.PreencherTabelas(evento.pageIndex);
+
   }
 
-  acessarLivro(id: number) { }
-
   private criarSucesso(data: LivroResponse) {
-    this.aguardando = false;
-    this.sucesso = true;
-    if (this.tabelaMaior.length < 10) {
-      this.tabelaMaior.push(data);
-    }
+    this.aguardandoCriacao = false;
+    this.sucessoCriacao = true;
+    this.PreencherTabelas(this.paginaAtual);
+    this.formulario.reset();
+
     setTimeout(() => {
-      this.sucesso = false;
+      this.sucessoCriacao = false;
     }, 2000)
   }
   private respostaErro(error: HttpErrorResponse) {
-    this.falha = true;
-    this.aguardando = false;
+
+    this.falhaCriacao = true;
+    this.aguardandoCriacao = false;
+
     if (error.status == 401) {
       this.mensagemErro = "sessão expirou, necessário refazer o login"
       this.api.validarToken(error);
     }
     else
       this.mensagemErro = error.error.message;
+    this.formulario.reset();
+
+    setTimeout(() => {
+      this.falhaCriacao = false;
+    }, 3500)
   }
 
 }

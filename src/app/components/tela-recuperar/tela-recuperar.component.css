@@ -100,15 +100,16 @@ app-button {
     align-items: end;
     flex-direction: row-reverse;
     justify-content: end;
-    font-weight: 600;
-    border-radius: 10px;
     color: var(--texto);
     background: var(--branco);
-    width: 60vw;
+
+     width: 70vw;
     min-height: 70vh;
+    border-radius: 1.5vh;
+    font-weight: 600;
 
     h3 {
-      font-size: 6.2vh;
+      font-size: 7.2vh;
       width: 20vw;
     }
 
@@ -117,9 +118,10 @@ app-button {
       align-items: center;
       flex-direction: column;
       justify-content: center;
-      gap: 23vh;
-      width: 30vw;
+      gap: 25vh;
+      width: 50%;
       height: 70vh;
+      padding: 2vh;
 
       p {
         font-size: 3.2vh;
@@ -132,9 +134,10 @@ app-button {
       align-items: center;
       flex-direction: column;
       justify-content: center;
-      border-radius: 10px;
-      width: 30vw;
+       border-radius: 1.5vh;
+      width: 50%;
       min-height: 70vh;
+      padding: 2vh;
       background: -webkit-linear-gradient(180deg, var(--cSegun), var(--cPrim));
     }
   }
