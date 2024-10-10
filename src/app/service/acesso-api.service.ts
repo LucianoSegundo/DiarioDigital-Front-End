@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { PaginacaoLivroResponse } from '../DTO/response/livro/PaginacaoLivroResponse';
 import { LoginResponse } from '../DTO/response/usuario/LoginResponse';
 import { UsuarioResponse } from '../DTO/response/usuario/UsuarioResponse';
+import { PaginacaoCapituloResponse } from '../DTO/response/capitulo/PaginacaoCapituloResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -56,8 +57,8 @@ export class AcessoApiService {
     return this.http.get<PaginacaoLivroResponse>(this.livroUrl + '/listar?pagina=' + pagina, { headers: this.createHeaders() });
   }
 
-  listarCapitulos(IdLivro: number, pagina: number = 0): Observable<PaginacaoLivroResponse> {
-    return this.http.get<PaginacaoLivroResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina, { headers: this.createHeaders() });
+  listarCapitulos(IdLivro: string, pagina: number = 0): Observable<PaginacaoCapituloResponse> {
+    return this.http.get<PaginacaoCapituloResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina, { headers: this.createHeaders() });
   }
 
   //Lidando com Capitulos

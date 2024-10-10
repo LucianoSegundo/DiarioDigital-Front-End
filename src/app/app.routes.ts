@@ -22,10 +22,10 @@ export const routes: Routes = [
         path: 'livros/:livroID', component: LivroComponent,
         children: [
             { path: '', component: ListaComponent },
-            { path: 'criar', component: CriarCapituloComponent },
-            { path: ':capituloID/', component: ConteudoCapituloComponent },
-            { path: ':capituloID/configuracoes', component: OpcoesCapituloComponent },
             { path: 'configuracoes', component: OpcoesLivroComponent },
+            { path: 'criar', component: CriarCapituloComponent },
+            { path: 'capitulo/:capituloID', component: ConteudoCapituloComponent },
+            { path: 'capitulo/:capituloID/configuracoes', component: OpcoesCapituloComponent },
         ],
     },
     { path: '**', redirectTo: '/home', pathMatch: 'full' }

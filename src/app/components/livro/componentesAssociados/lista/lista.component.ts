@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import {  MatTableModule } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CapituloResponse } from '../../../../DTO/response/capitulo/CapituloResponse';
+import { AcessoApiService } from '../../../../service/acesso-api.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-lista',
@@ -12,20 +15,41 @@ import { CapituloResponse } from '../../../../DTO/response/capitulo/CapituloResp
 })
 export class ListaComponent {
   colunas:string[] = ["icone","titulo", "nCap"];
-  baseDados: CapituloResponse[] = [
-    {id:1, Conteudo:"", numeroCapitulo:1, titulo: "ababa"},
-    {id:2, Conteudo:"", numeroCapitulo:20, titulo: "ababa"},
-    {id:3, Conteudo:"", numeroCapitulo:300, titulo: "ababa"},
-    {id:4, Conteudo:"", numeroCapitulo:4000, titulo: "ababa"},
-    {id:5, Conteudo:"", numeroCapitulo:5, titulo: "ababa"},
-    {id:6, Conteudo:"", numeroCapitulo:6, titulo: "ababa"},
-    {id:7, Conteudo:"", numeroCapitulo:7, titulo: "ababa"},
-    {id:8, Conteudo:"", numeroCapitulo:8, titulo: "ababa"},
-    {id:9, Conteudo:"", numeroCapitulo:9, titulo: "ababa"},
-    {id:10, Conteudo:"", numeroCapitulo:10, titulo: "ababa"},
-  
-  ];
+  totalPaginas: number= 0;
+  baseDados: CapituloResponse[] = [];
 
-  acessarCapitulo(id:number){ console.log(id)}
+  livroID:string | null = "";
+
+    constructor(private router:Router, private activatedRoute:ActivatedRoute, private api:AcessoApiService){
+      activatedRoute.paramMap.subscribe(params =>{
+        this.livroID = params.get('livroID');
+        console.log("valor do id:"+ this.livroID)
+      });
+
+      this.baseDados = this.coletarCapitulos();
+    }
+
+  acessarCapitulo(id:number){
+    this.router.navigate(["/livros/"+this.livroID+"/capitulo/"+id]);
+  }
+
+  coletarCapitulos(pagina:number =0):CapituloResponse[]{
+    if(this.livroID != null){
+      this.api.listarCapitulos(this.livroID as string, pagina).subscribe({
+        next: (data)=>{
+          this.totalPaginas = data.totalPages;
+          return data.content;
+
+        },
+        error: (error: HttpErrorResponse) =>{
+        }
+      })
+    }
+    return [];
+  }
+
+  paginador(evento: PageEvent){
+    this.baseDados = this.coletarCapitulos(evento.pageIndex);
+  }
 
 }

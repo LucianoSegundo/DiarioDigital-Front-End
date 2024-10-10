@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-livro',
@@ -14,9 +14,13 @@ export class LivroComponent {
     bcriar:boolean = false;
     bopcoes:boolean = false;
 
-    livroID:number = 0;
+    livroID:string |null= "";
 
-    constructor(private router:Router){
+    constructor(private router:Router, private activatedRoute:ActivatedRoute){
+      activatedRoute.paramMap.subscribe(params =>{
+        this.livroID = params.get('livroID');
+        console.log("valor do id:"+ this.livroID)
+      });
     }
   trocarConteudo(alvo:string){
     if(alvo == "lista"){
