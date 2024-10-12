@@ -11,6 +11,8 @@ import { PaginacaoLivroResponse } from '../DTO/response/livro/PaginacaoLivroResp
 import { LoginResponse } from '../DTO/response/usuario/LoginResponse';
 import { UsuarioResponse } from '../DTO/response/usuario/UsuarioResponse';
 import { PaginacaoCapituloResponse } from '../DTO/response/capitulo/PaginacaoCapituloResponse';
+import { CapituloResponse } from '../DTO/response/capitulo/CapituloResponse';
+import { CapituloRequest } from '../DTO/request/capitulo/CapituloRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -61,16 +63,41 @@ export class AcessoApiService {
     return this.http.get<PaginacaoCapituloResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina, { headers: this.createHeaders() });
   }
 
+  criarCapitulo(capitulo: CapituloRequest, IDlivro: string): Observable<CapituloResponse> {
+    return this.http.post<CapituloResponse>(this.capituloUrl + '/' + IDlivro, capitulo, { headers: this.createHeaders() });
+  }
+
   //Lidando com Capitulos
 
   //Outros
 
-  validarToken(error: HttpErrorResponse): void {
-    if (error.status === 401) {
+  validarToken(error: HttpErrorResponse): boolean {
+    if (error.status == 0) {
+
+      localStorage.removeItem("livroID");
       localStorage.removeItem('token');
+      alert("De alguma forma não foi possivel se conectar ao servidor")
+
       setTimeout(() => {
         this.router.navigate(['/login']);
-      }, 3000);
+      }, 1000);
+      return true;
     }
+    else if (error.status === 401) {
+
+      if (localStorage.getItem("token") != null) {
+        localStorage.removeItem('token');
+        alert("sessão expirou, necessário refazer o login");
+      }
+      else
+        alert("é necessário estar logado para acessar este conteudo");
+
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 1000);
+
+      return true;
+    }
+    return false;
   }
 }

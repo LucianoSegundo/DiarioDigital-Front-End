@@ -1,1 +1,25 @@
-<main></main>
+<main>
+    <form class="formulario" [formGroup]="formulario">
+        <fieldset [class]="tituloClass">
+            <img src="escrever.png">
+            <input type="text" placeholder="Título" [class]="tituloClass" formControlName="titulo" (input)="validarCampo('titulo')">
+        </fieldset>
+        <fieldset [class]="ConteudoClass">
+            <textarea placeholder="conteudo" formControlName="Conteudo" (input)="validarCampo('Conteudo')" [class]="ConteudoClass"></textarea>
+        </fieldset>
+   
+    <section>
+        <app-button mensagem="Criar Capitulo" [desabilitado]="!formulario.valid" (submit)="criarCapitulo()"></app-button>
+        
+        @if (aguardando) {
+            <p class="aguardando"> Aguardando resposta da solicitação</p>
+            }
+            @if (sucesso) {
+                <p class="sucesso"> livro criado com sucesso</p>
+                }
+            @if (falha) {
+            <p class="alerta"> {{mensagemERRo}}</p>
+            }
+    </section>
+</form>
+</main>

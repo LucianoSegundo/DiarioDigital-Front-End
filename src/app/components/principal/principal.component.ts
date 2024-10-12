@@ -48,10 +48,10 @@ export class PrincipalComponent {
       this.falhaCriacao = false;
       this.api.criarLivro(this.formulario.value.titulo as string).subscribe({
         next: (data) => {
-          this.criarSucesso(data);
+          this.tratarSucessoCriacao(data);
         },
         error: (error: HttpErrorResponse) => {
-          this.respostaErro(error);
+          this.tratarErro(error);
         }
       });
     }
@@ -64,7 +64,7 @@ export class PrincipalComponent {
         this.baseDados = data.content;
       },
       error: (error) => {
-        this.respostaErro(error);
+        this.tratarErro(error);
       }
 
     })
@@ -78,7 +78,7 @@ export class PrincipalComponent {
         
       },
       error: (error: HttpErrorResponse)=>{
-        this.respostaErro(error);
+        this.tratarErro(error);
       }
     })
   }
@@ -89,7 +89,7 @@ export class PrincipalComponent {
 
   }
 
-  private criarSucesso(data: LivroResponse) {
+  private tratarSucessoCriacao(data: LivroResponse) {
     this.aguardandoCriacao = false;
     this.sucessoCriacao = true;
     this.PreencherTabelas(this.paginaAtual);
@@ -99,17 +99,14 @@ export class PrincipalComponent {
       this.sucessoCriacao = false;
     }, 2000)
   }
-  private respostaErro(error: HttpErrorResponse) {
+  private tratarErro(error: HttpErrorResponse) {
 
     this.falhaCriacao = true;
     this.aguardandoCriacao = false;
-
-    if (error.status == 401) {
-      this.mensagemErro = "sessão expirou, necessário refazer o login"
-      this.api.validarToken(error);
-    }
-    else
-      this.mensagemErro = error.error.message;
+    
+    this.api.validarToken(error);
+   
+    this.mensagemErro = error.error.message;
     this.formulario.reset();
 
     setTimeout(() => {
