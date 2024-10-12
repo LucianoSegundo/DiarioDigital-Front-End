@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './opcoes-livro.component.css'
 })
 export class OpcoesLivroComponent {
+  livroID: string| null= "";
+  constructor() { 
+    this.livroID = localStorage.getItem("livroID");
 
+  }
 }

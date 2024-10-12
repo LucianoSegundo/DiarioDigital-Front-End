@@ -14,42 +14,61 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './lista.component.css'
 })
 export class ListaComponent {
-  colunas:string[] = ["icone","titulo", "nCap"];
-  totalPaginas: number= 0;
+  colunas: string[] = ["icone", "titulo", "nCap"];
+  totalPaginas: number = 0;
   baseDados: CapituloResponse[] = [];
 
-  livroID:string | null = "";
+  livroID: string | null = "";
 
-    constructor(private router:Router, private activatedRoute:ActivatedRoute, private api:AcessoApiService){
-      activatedRoute.paramMap.subscribe(params =>{
-        this.livroID = params.get('livroID');
-        console.log("valor do id:"+ this.livroID)
-      });
+  constructor(private router: Router, private api: AcessoApiService) {
+    this.livroID = localStorage.getItem("livroID");
 
-      this.baseDados = this.coletarCapitulos();
-    }
-
-  acessarCapitulo(id:number){
-    this.router.navigate(["/livros/"+this.livroID+"/capitulo/"+id]);
+    this.coletarCapitulos();
   }
 
-  coletarCapitulos(pagina:number =0):CapituloResponse[]{
-    if(this.livroID != null){
+  paginador(evento: PageEvent) {
+    this.coletarCapitulos(evento.pageIndex);
+  }
+
+  acessarCapitulo(id: number) {
+    this.router.navigate(["/livros/" + this.livroID + "/capitulo/" + id]);
+  }
+
+  coletarCapitulos(pagina: number = 0) {
+    if (this.livroID != null) {
       this.api.listarCapitulos(this.livroID as string, pagina).subscribe({
-        next: (data)=>{
+        next: (data) => {
           this.totalPaginas = data.totalPages;
-          return data.content;
+          this.baseDados = data.content;
 
         },
-        error: (error: HttpErrorResponse) =>{
+        error: (error: HttpErrorResponse) => {
+          this.tratarErro(error);
         }
       })
     }
-    return [];
+
   }
 
-  paginador(evento: PageEvent){
-    this.baseDados = this.coletarCapitulos(evento.pageIndex);
-  }
+  tratarErro(error: HttpErrorResponse) {
 
+    if (this.api.validarToken(error)) {
+
+    }
+    else if (error.status == 404) {
+
+      alert("O livro não foi encontrado")
+      setTimeout(() => {
+        localStorage.removeItem("livroID");
+        this.router.navigate(["/principal"]);
+      }, 1000);
+    }
+    else {
+      alert("algo deu errado")
+      setTimeout(() => {
+        localStorage.removeItem("livroID");
+        this.router.navigate(["/principal"]);
+      }, 1000);
+    };
+  }
 }

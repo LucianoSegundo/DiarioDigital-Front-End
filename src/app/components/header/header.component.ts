@@ -12,8 +12,8 @@ import { ButtonComponent } from '../button/button.component';
 })
 export class HeaderComponent {
   localizacao: string = "";
-
-  constructor(private router: Router) {
+  variavel: boolean= false;
+  constructor(public router: Router) {
     this.coletarRota();
   }
 

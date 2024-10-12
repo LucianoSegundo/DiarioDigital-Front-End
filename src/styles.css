@@ -46,7 +46,7 @@
     background-color: rgb(252, 75, 75);
     display: block;
     padding: 20px 0;
-    min-width: 99%;
+    width: 99%;
     border-radius: 5px;
     text-align: center;
 
@@ -55,7 +55,7 @@
     background-color: rgb(75, 202, 252);
     display: block;
     padding: 15px 0;
-    min-width: 99%;
+    width: 99%;
     border-radius: 5px;
     text-align: center;
   }
@@ -63,7 +63,7 @@
     background-color: rgb(252, 240, 75);
     display: block;
     padding: 15px 0;
-    min-width: 99%;
+    width: 99%;
     border-radius: 5px;
     text-align: center;
     color: rgb(44, 41, 41);
