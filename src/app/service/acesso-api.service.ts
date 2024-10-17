@@ -35,6 +35,7 @@ export class AcessoApiService {
   //Lidando com usuarios
 
   cadastrarUsu(usuario: UsuarioRequest): Observable<UsuarioResponse> {
+    console.log("url" + this.userUrl+"/");
     return this.http.post<UsuarioResponse>(this.userUrl+"/", usuario);
   }
 
