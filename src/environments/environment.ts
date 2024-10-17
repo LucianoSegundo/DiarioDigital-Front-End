@@ -1,4 +1,4 @@
 export const environment = {
-        urlBase: "${urlBase}",
+        urlBase: "https://diariodigital-2.onrender.com",
 
 };
