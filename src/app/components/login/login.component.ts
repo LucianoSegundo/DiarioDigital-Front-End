@@ -79,7 +79,7 @@ export class LoginComponent {
   private loginError(error: HttpErrorResponse) {
     this.aguardando = false;
     this.falha = true;
-    console.error('Erro ao fazer a requisição:', error.error.message);
+    console.error('Erro ao fazer a requisição: '+ error.error.message);
   }
 
 }
