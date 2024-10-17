@@ -101,7 +101,7 @@ export class HomeComponent {
 
   erroCad(error: HttpErrorResponse) {
     {
-      console.error('Erro ao fazer a requisição:', error.error.message);
+      console.error('Erro ao fazer a requisição: '+ error.error.message);
       this.mensagemErro = error.error.message;
       this.erroForm = true;
       this.aguardando = false;
