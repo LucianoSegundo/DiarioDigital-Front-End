@@ -35,7 +35,7 @@ export class AcessoApiService {
   //Lidando com usuarios
 
   cadastrarUsu(usuario: UsuarioRequest): Observable<UsuarioResponse> {
-    return this.http.post<UsuarioResponse>(this.userUrl+"/", usuario);
+    return this.http.post<UsuarioResponse>(this.userUrl + "/", usuario);
   }
 
   login(usuario: LoginRequest): Observable<LoginResponse> {
@@ -74,8 +74,7 @@ export class AcessoApiService {
   validarToken(error: HttpErrorResponse): boolean {
     if (error.status == 0) {
 
-      localStorage.removeItem("livroID");
-      localStorage.removeItem('token');
+      localStorage.clear();
       alert("De alguma forma não foi possivel se conectar ao servidor")
 
       setTimeout(() => {
@@ -86,12 +85,12 @@ export class AcessoApiService {
     else if (error.status === 401) {
 
       if (localStorage.getItem("token") != null) {
-        localStorage.removeItem('token');
         alert("sessão expirou, necessário refazer o login");
       }
       else
         alert("é necessário estar logado para acessar este conteudo");
 
+      localStorage.clear();
       setTimeout(() => {
         this.router.navigate(['/login']);
       }, 1000);

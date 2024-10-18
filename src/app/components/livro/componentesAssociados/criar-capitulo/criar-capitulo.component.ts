@@ -14,6 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './criar-capitulo.component.css'
 })
 export class CriarCapituloComponent {
+  tamanhoConteudo: number = 5000;
   tituloClass: string = "";
   ConteudoClass: string = "";
   mensagemERRo: string = ""
@@ -30,8 +31,12 @@ export class CriarCapituloComponent {
    
   formulario = new FormGroup({
     titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    Conteudo: new FormControl('', [Validators.required, Validators.minLength(50)])
+    Conteudo: new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(this.tamanhoConteudo)])
   })
+
+  printar(){
+    console.log("esse é o tamanho " + this.formulario.value.Conteudo?.length);
+  }
 
   validarCampo(alvo: string) {
 
@@ -100,5 +105,6 @@ export class CriarCapituloComponent {
       }, 1000);
     };
   }
+
 
 }

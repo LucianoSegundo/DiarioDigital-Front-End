@@ -15,7 +15,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ListaComponent {
   colunas: string[] = ["icone", "titulo", "nCap"];
+  paginaAtual: number = 0;
   totalPaginas: number = 0;
+  totalItens: number = 0;
   baseDados: CapituloResponse[] = [];
 
   livroID: string | null = "";
@@ -28,9 +30,11 @@ export class ListaComponent {
 
   paginador(evento: PageEvent) {
     this.coletarCapitulos(evento.pageIndex);
+    this.paginaAtual = evento.pageIndex;
   }
 
   acessarCapitulo(id: number) {
+    this.transferir(id);
     this.router.navigate(["/livros/" + this.livroID + "/capitulo/" + id]);
   }
 
@@ -39,6 +43,7 @@ export class ListaComponent {
       this.api.listarCapitulos(this.livroID as string, pagina).subscribe({
         next: (data) => {
           this.totalPaginas = data.totalPages;
+          this.totalItens = data.totalElements;
           this.baseDados = data.content;
 
         },
@@ -70,5 +75,15 @@ export class ListaComponent {
         this.router.navigate(["/principal"]);
       }, 1000);
     };
+  }
+
+  transferir(id: number){
+    let dados = JSON.stringify(this.baseDados);   
+    localStorage.setItem("dados", dados);
+    localStorage.setItem("pAtual", this.paginaAtual.toString());
+    localStorage.setItem("TItens", this.totalItens.toString());
+    localStorage.setItem("TPagina", this.totalPaginas.toString());
+    localStorage.setItem("index",this.baseDados.findIndex(x => x.id == id).toString());
+
   }
 }

@@ -5,7 +5,7 @@
             <input type="text" placeholder="Título" [class]="tituloClass" formControlName="titulo" (input)="validarCampo('titulo')">
         </fieldset>
         <fieldset [class]="ConteudoClass">
-            <textarea placeholder="conteudo" formControlName="Conteudo" (input)="validarCampo('Conteudo')" [class]="ConteudoClass"></textarea>
+            <textarea placeholder="conteudo" formControlName="Conteudo" (input)="validarCampo('Conteudo')" [class]="ConteudoClass" [maxlength]="tamanhoConteudo" minLength="50"></textarea>
         </fieldset>
    
     <section>
@@ -14,11 +14,14 @@
         @if (aguardando) {
             <p class="aguardando"> Aguardando resposta da solicitação</p>
             }
-            @if (sucesso) {
+            @else if (sucesso) {
                 <p class="sucesso"> livro criado com sucesso</p>
                 }
-            @if (falha) {
+            @else if (falha) {
             <p class="alerta"> {{mensagemERRo}}</p>
+            }
+            @else {
+                <p class="alerta semFundo"> {{formulario.value.Conteudo?.length}} / {{tamanhoConteudo}}</p>
             }
     </section>
 </form>
