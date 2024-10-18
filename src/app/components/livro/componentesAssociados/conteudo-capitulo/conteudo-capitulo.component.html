@@ -1,1 +1,16 @@
-<main></main>
+<main>
+    <h1>{{baseDados.at(listaIndex)?.titulo}}</h1>
+    <section>
+
+        <textarea [readOnly]="true">
+            {{baseDados.at(listaIndex)?.Conteudo}}
+        </textarea>
+        <mat-paginator
+        (page)="paginador($event)"
+        [hidePageSize]="true"
+        [pageIndex]="elementosIndex"
+        [length]="quantidadeElementos"
+        [pageSize]="1"
+        ></mat-paginator>
+    </section>
+    </main>

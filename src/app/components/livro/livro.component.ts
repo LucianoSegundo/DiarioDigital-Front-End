@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-livro',
@@ -20,8 +21,13 @@ export class LivroComponent {
     activatedRoute.paramMap.subscribe(params => {
       this.livroID = params.get('livroID');
       localStorage.setItem("livroID", this.livroID as string);
-      this.testarRotaInicial();
+      
 
+      this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.testarRotaInicial();
+      });
     });
 
   }
@@ -47,7 +53,8 @@ export class LivroComponent {
     }
 
   }
-  testarRotaInicial() {
+  testarRotaInicial(): boolean {
+    
     if (this.router.url == "/livros/" + this.livroID) {
       this.blista = true;
       this.bcriar = false;
@@ -63,7 +70,13 @@ export class LivroComponent {
       this.bcriar = false;
       this.bopcoes = true;
     }
+    else{
+      this.blista = false;
+      this.bcriar = false;
+      this.bopcoes = false;
+    }
 
+    return false;
   }
 
 }
