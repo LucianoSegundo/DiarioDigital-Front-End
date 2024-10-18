@@ -60,7 +60,7 @@ export class AcessoApiService {
   }
 
   listarCapitulos(IdLivro: string, pagina: number = 0): Observable<PaginacaoCapituloResponse> {
-    return this.http.get<PaginacaoCapituloResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina, { headers: this.createHeaders() });
+    return this.http.get<PaginacaoCapituloResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina +'&ordarPor=numeroCapitulo', { headers: this.createHeaders() });
   }
 
   criarCapitulo(capitulo: CapituloRequest, IDlivro: string): Observable<CapituloResponse> {
