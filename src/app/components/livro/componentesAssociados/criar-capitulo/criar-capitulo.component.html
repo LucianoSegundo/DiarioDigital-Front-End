@@ -2,10 +2,10 @@
     <form class="formulario" [formGroup]="formulario">
         <fieldset [class]="tituloClass">
             <img src="escrever.png">
-            <input type="text" placeholder="Título" [class]="tituloClass" formControlName="titulo" (input)="validarCampo('titulo')">
+            <input type="text" placeholder="Título" maxlength="56" [class]="tituloClass" formControlName="titulo" (input)="validarCampo('titulo')">
         </fieldset>
         <fieldset [class]="ConteudoClass">
-            <textarea placeholder="conteudo" formControlName="Conteudo" (input)="validarCampo('Conteudo')" [class]="ConteudoClass" [maxlength]="tamanhoConteudo" minLength="50"></textarea>
+            <textarea placeholder="Deve conter no minimo 50 caracteres." formControlName="Conteudo" (input)="validarCampo('Conteudo')" [class]="ConteudoClass" [maxlength]="tamanhoConteudo" minLength="50"></textarea>
         </fieldset>
    
     <section>

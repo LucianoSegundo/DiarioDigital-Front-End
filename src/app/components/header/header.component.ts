@@ -11,6 +11,7 @@ import { ButtonComponent } from '../button/button.component';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  anterior: string = "";
   localizacao: string = "";
   variavel: boolean= false;
   constructor(public router: Router) {
@@ -36,6 +37,11 @@ export class HeaderComponent {
       this.router.navigate(["/perfil"]);
     }, 500);
   }
+  botaoVoltar() {
+    setTimeout(() => {
+      this.router.navigate([this.anterior]);
+    }, 500);
+  }
 
   coletarRota() {
     this.router.events.pipe(
@@ -43,6 +49,7 @@ export class HeaderComponent {
       filter(event => event instanceof NavigationEnd)
 
     ).subscribe((event: NavigationEnd) => {
+      this.anterior = this.localizacao;
       this.localizacao = event.url;
 
     })

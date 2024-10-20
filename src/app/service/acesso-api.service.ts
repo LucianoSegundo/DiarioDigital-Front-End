@@ -45,11 +45,17 @@ export class AcessoApiService {
   recuperarSenha(usuario: RecuperarSenhaRequest): Observable<UsuarioResponse> {
     return this.http.put<UsuarioResponse>(this.userUrl + '/recuperarSenha', usuario);
   }
+  excluirUsuario(senha: string): Observable<any> {
+    return this.http.post<any>(this.userUrl + '/excluir', senha, { headers: this.createHeaders() });
+  }
 
   //Lidando com Livros
 
   criarLivro(titulo: string): Observable<LivroResponse> {
     return this.http.post<LivroResponse>(this.livroUrl + '/criar', titulo, { headers: this.createHeaders() });
+  }
+  excluirLivro(titulo: string, livroID: string): Observable<any> {
+    return this.http.post<any>(this.livroUrl + '/deletar/' + livroID, titulo, { headers: this.createHeaders() });
   }
   verificarLivro(livroId: number): Observable<LivroResponse> {
     return this.http.get<LivroResponse>(this.livroUrl + '/' + livroId, { headers: this.createHeaders() });

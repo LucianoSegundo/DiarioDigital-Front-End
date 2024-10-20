@@ -57,5 +57,27 @@ mat-paginator{
     }
     mat-paginator{
         width: 100%;
+      
     }
+
+    .mat-column-icone{
+        width: 5%;
+        padding: 0;
+        }
+        .mat-column-titulo.mat-mdc-cell  {
+
+            width: 80%;
+        
+            font-size: 9.5px;
+            padding: 0;
+            text-align: center;
+        
+        }
+        
+        .mat-column-nCap{
+            width: 3%;
+            padding: 0;
+            text-align: center;
+        }
+    
 }

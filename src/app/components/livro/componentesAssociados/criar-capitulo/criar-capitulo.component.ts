@@ -30,7 +30,7 @@ export class CriarCapituloComponent {
   }
    
   formulario = new FormGroup({
-    titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    titulo: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(55)]),
     Conteudo: new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(this.tamanhoConteudo)])
   })
 
@@ -68,6 +68,7 @@ export class CriarCapituloComponent {
         next: (data) => {
           this.aguardando = false;
           this.sucesso = true
+          this.formulario.reset()
 
           setTimeout(() => {
             this.sucesso = false;
