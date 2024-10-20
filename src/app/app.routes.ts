@@ -7,7 +7,6 @@ import { LivroComponent } from './components/livro/livro.component';
 import { CriarCapituloComponent } from './components/livro/componentesAssociados/criar-capitulo/criar-capitulo.component';
 import { ListaComponent } from './components/livro/componentesAssociados/lista/lista.component';
 import { ConteudoCapituloComponent } from './components/livro/componentesAssociados/conteudo-capitulo/conteudo-capitulo.component';
-import { OpcoesCapituloComponent } from './components/livro/componentesAssociados/opcoes-capitulo/opcoes-capitulo.component';
 import { OpcoesLivroComponent } from './components/livro/componentesAssociados/opcoes-livro/opcoes-livro.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 
@@ -24,8 +23,7 @@ export const routes: Routes = [
             { path: '', component: ListaComponent },
             { path: 'configuracoes', component: OpcoesLivroComponent },
             { path: 'criar', component: CriarCapituloComponent },
-            { path: 'capitulo/:capituloID', component: ConteudoCapituloComponent },
-            { path: 'capitulo/:capituloID/configuracoes', component: OpcoesCapituloComponent },
+            { path: 'capitulo/:capituloID', component: ConteudoCapituloComponent }
         ],
     },
     { path: '**', redirectTo: '/home', pathMatch: 'full' }

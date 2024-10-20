@@ -38,7 +38,7 @@ export class PrincipalComponent {
   }
 
   formulario = new FormGroup({
-    titulo: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    titulo: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(60)]),
 
   });
 
