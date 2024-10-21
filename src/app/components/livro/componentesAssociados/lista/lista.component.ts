@@ -23,7 +23,7 @@ export class ListaComponent {
   livroID: string | null = "";
 
   constructor(private router: Router, private api: AcessoApiService) {
-    this.livroID = localStorage.getItem("livroID");
+    this.livroID = sessionStorage.getItem("livroID");
 
     this.coletarCapitulos();
   }
@@ -64,26 +64,26 @@ export class ListaComponent {
 
       alert("O livro não foi encontrado")
       setTimeout(() => {
-        localStorage.removeItem("livroID");
+        sessionStorage.removeItem("livroID");
         this.router.navigate(["/principal"]);
       }, 1000);
     }
     else {
       alert("algo deu errado")
       setTimeout(() => {
-        localStorage.removeItem("livroID");
+        sessionStorage.removeItem("livroID");
         this.router.navigate(["/principal"]);
       }, 1000);
     };
   }
 
-  transferir(id: number){
-    let dados = JSON.stringify(this.baseDados);   
-    localStorage.setItem("dados", dados);
-    localStorage.setItem("pAtual", this.paginaAtual.toString());
-    localStorage.setItem("TItens", this.totalItens.toString());
-    localStorage.setItem("TPagina", this.totalPaginas.toString());
-    localStorage.setItem("index",this.baseDados.findIndex(x => x.id == id).toString());
+  transferir(id: number) {
+    let dados = JSON.stringify(this.baseDados);
+    sessionStorage.setItem("dados", dados);
+    sessionStorage.setItem("pAtual", this.paginaAtual.toString());
+    sessionStorage.setItem("TItens", this.totalItens.toString());
+    sessionStorage.setItem("TPagina", this.totalPaginas.toString());
+    sessionStorage.setItem("index", this.baseDados.findIndex(x => x.id == id).toString());
 
   }
 }

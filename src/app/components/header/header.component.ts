@@ -13,7 +13,7 @@ import { ButtonComponent } from '../button/button.component';
 export class HeaderComponent {
   anterior: string = "";
   localizacao: string = "";
-  variavel: boolean= false;
+  variavel: boolean = false;
   constructor(public router: Router) {
     this.coletarRota();
   }
@@ -26,7 +26,7 @@ export class HeaderComponent {
 
   botaoEncerrar() {
     setTimeout(() => {
-      localStorage.removeItem("token");
+      sessionStorage.clear()
       this.router.navigate(["/login"]);
     }, 500);
 

@@ -67,8 +67,7 @@ export class LoginComponent {
   private loginSucesso(data: any) {
     let acesso = data.accessToken;
 
-    console.log(acesso);
-    localStorage.setItem("token", acesso);
+    sessionStorage.setItem("token", acesso);
 
     setTimeout(() => {
       this.aguardando = false;
@@ -79,7 +78,7 @@ export class LoginComponent {
   private loginError(error: HttpErrorResponse) {
     this.aguardando = false;
     this.falha = true;
-    console.error('Erro ao fazer a requisição: '+ error.error.message);
+    console.error('Erro ao fazer a requisição: ' + error.error.message);
   }
 
 }

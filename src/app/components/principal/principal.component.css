@@ -48,7 +48,7 @@ main {
   .acesso {
     flex-direction: column;
     justify-content: start;
-    padding-top:2vh ;
+    padding-top: 2vh;
 
     width: 22vw;
     background: linear-gradient(
@@ -214,11 +214,10 @@ main {
 
     table {
       width: 100%;
-      
+
       background: none;
     }
     table tr {
-
       font-weight: 900;
     }
     .listinha {
@@ -232,8 +231,6 @@ main {
       border-bottom-color: rgb(29, 28, 28);
       border-width: 1px;
       font-size: 9px;
-      
-      
     }
     .mat-mdc-header-cell {
       border-bottom-color: white;
@@ -250,7 +247,7 @@ main {
     }
     .mat-column-capitulos {
       width: 11%;
-      padding: 0 ;
+      padding: 0;
       padding-left: 4px;
     }
 

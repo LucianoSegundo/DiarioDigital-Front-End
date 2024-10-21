@@ -23,15 +23,12 @@ header {
     justify-content: end;
     padding-right: 0.2%;
   }
-
- 
 }
 @media (max-width: 1080px) {
-  header{
+  header {
     height: 40px;
     width: 100vw;
-  } 
-
+  }
 }
 [class^="/homeclasse"] {
   width: 98.8vw;

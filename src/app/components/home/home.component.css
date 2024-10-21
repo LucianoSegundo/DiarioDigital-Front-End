@@ -127,7 +127,7 @@ main {
         display: inline-block;
         border-radius: 30vh;
         width: 29vw;
-        height:  37.3vh;
+        height: 37.3vh;
       }
     }
 
@@ -169,25 +169,23 @@ main {
       flex-direction: column;
       min-width: 40%;
 
-      p{
+      p {
         font-size: 2.5vh;
       }
       fieldset {
         width: 100%;
-        
-        img{
+
+        img {
           height: 2.5vh;
           width: 2.5vh;
         }
 
         input {
-          
           border-radius: 8px;
           font-size: 2vh;
           width: 100%;
-          height: 6.2vh ;
+          height: 6.2vh;
           border: none;
-
         }
       }
     }

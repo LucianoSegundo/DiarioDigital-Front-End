@@ -18,25 +18,22 @@ export class CriarCapituloComponent {
   tituloClass: string = "";
   ConteudoClass: string = "";
   mensagemERRo: string = ""
-  livroID: string | null= "" ;
+  livroID: string | null = "";
 
   aguardando: boolean = false;
   sucesso: boolean = false;
   falha: boolean = false;
 
-  constructor(private api: AcessoApiService, private router: Router,private activatedRoute: ActivatedRoute) { 
-    this.livroID = localStorage.getItem("livroID");
+  constructor(private api: AcessoApiService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.livroID = sessionStorage.getItem("livroID");
 
   }
-   
+
   formulario = new FormGroup({
     titulo: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(55)]),
     Conteudo: new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(this.tamanhoConteudo)])
   })
 
-  printar(){
-    console.log("esse é o tamanho " + this.formulario.value.Conteudo?.length);
-  }
 
   validarCampo(alvo: string) {
 
@@ -74,9 +71,8 @@ export class CriarCapituloComponent {
             this.sucesso = false;
           }, 3000);
 
-         },
+        },
         error: (error: HttpErrorResponse) => {
-          console.log(error)
           this.tratarErro(error);
         }
       });
@@ -92,7 +88,7 @@ export class CriarCapituloComponent {
 
       alert("O livro não foi encontrado")
       setTimeout(() => {
-        localStorage.removeItem("livroID");
+        sessionStorage.removeItem("livroID");
         this.router.navigate(["/principal"]);
       }, 1000);
     }

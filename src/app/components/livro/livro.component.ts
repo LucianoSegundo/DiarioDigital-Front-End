@@ -20,14 +20,14 @@ export class LivroComponent {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     activatedRoute.paramMap.subscribe(params => {
       this.livroID = params.get('livroID');
-      localStorage.setItem("livroID", this.livroID as string);
-      
+      sessionStorage.setItem("livroID", this.livroID as string);
+
 
       this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.testarRotaInicial();
-      });
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this.testarRotaInicial();
+        });
     });
 
   }
@@ -53,8 +53,15 @@ export class LivroComponent {
     }
 
   }
+
+  bvoltar(){
+   let token = sessionStorage.getItem("token");
+   sessionStorage.clear();
+   sessionStorage.setItem("token", token as string);
+   this.router.navigate(["/principal"])
+  }
   testarRotaInicial(): boolean {
-    
+
     if (this.router.url == "/livros/" + this.livroID) {
       this.blista = true;
       this.bcriar = false;
@@ -70,7 +77,7 @@ export class LivroComponent {
       this.bcriar = false;
       this.bopcoes = true;
     }
-    else{
+    else {
       this.blista = false;
       this.bcriar = false;
       this.bopcoes = false;

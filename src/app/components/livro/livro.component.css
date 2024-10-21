@@ -61,8 +61,10 @@ main .gestaoDeLivro button:hover {
   }
 }
 @media (max-width: 1080px) {
-  main{
-  flex-direction: column-reverse;
+  main {
+    flex-direction: column-reverse;
+    justify-content: start;
+    align-items: center;
   }
   main .gestaoDeLivro {
     background: none;
@@ -70,10 +72,10 @@ main .gestaoDeLivro button:hover {
     height: 10%;
     padding-top: 1%;
     flex-direction: row;
-     justify-content: space-evenly; 
+    justify-content: space-evenly;
   }
   main .gestaoDeLivro button {
-    width: 31%;
+    width: 23%;
     height: 60%;
     font-size: 90%;
     font-weight: 600;
