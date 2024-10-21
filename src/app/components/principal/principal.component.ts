@@ -32,7 +32,7 @@ export class PrincipalComponent {
   baseDados: LivroResponse[] = [];
   colunas: string[] = ["icone", "titulo", "capitulos"]
 
-  constructor(private api: AcessoApiService, private router:Router) {
+  constructor(private api: AcessoApiService, private router: Router) {
     this.PreencherTabelas();
 
   }
@@ -71,18 +71,18 @@ export class PrincipalComponent {
 
   }
   acessarLivro(id: number) {
-    console.log(id);
+
     this.api.verificarLivro(id).subscribe({
-      next :(data) =>{
-        this.router.navigate(["livros/"+id])
-        
+      next: (data) => {
+        this.router.navigate(["livros/" + id])
+
       },
-      error: (error: HttpErrorResponse)=>{
+      error: (error: HttpErrorResponse) => {
         this.tratarErro(error);
       }
     })
   }
-  
+
   paginar(evento: PageEvent) {
     this.paginaAtual = evento.pageIndex;
     this.PreencherTabelas(evento.pageIndex);
@@ -103,9 +103,9 @@ export class PrincipalComponent {
 
     this.falhaCriacao = true;
     this.aguardandoCriacao = false;
-    
+
     this.api.validarToken(error);
-   
+
     this.mensagemErro = error.error.message;
     this.formulario.reset();
 

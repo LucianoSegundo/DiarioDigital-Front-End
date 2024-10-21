@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { CapituloResponse } from '../../../../DTO/response/capitulo/CapituloResponse';
 import { AcessoApiService } from '../../../../service/acesso-api.service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -28,24 +28,24 @@ export class ConteudoCapituloComponent {
 
   receber() {
 
-    this.livroID = localStorage.getItem("livroID");
+    this.livroID = sessionStorage.getItem("livroID");
 
-    this.listaIndex = Number(localStorage.getItem("index"));
+    this.listaIndex = Number(sessionStorage.getItem("index"));
 
-    this.paginaIndex = Number(localStorage.getItem("pAtual"));
+    this.paginaIndex = Number(sessionStorage.getItem("pAtual"));
 
     this.elementosIndex = ((this.paginaIndex) * 10) + this.listaIndex;
 
-    let dados = localStorage.getItem("dados");
+    let dados = sessionStorage.getItem("dados");
     if (dados != null) {
       this.baseDados = JSON.parse(dados as string);
-      localStorage.removeItem("dados");
+      sessionStorage.removeItem("dados");
 
-      this.quantidadeElementos = Number(localStorage.getItem("TItens"));
-      localStorage.removeItem("TItens");
+      this.quantidadeElementos = Number(sessionStorage.getItem("TItens"));
+      sessionStorage.removeItem("TItens");
 
-      this.totalPaginas = Number(localStorage.getItem("TPagina"));
-      localStorage.removeItem("TPagina");
+      this.totalPaginas = Number(sessionStorage.getItem("TPagina"));
+      sessionStorage.removeItem("TPagina");
 
     }
     else this.coletarDados(this.paginaIndex);
@@ -57,17 +57,14 @@ export class ConteudoCapituloComponent {
 
       let index = this.listaIndex + 1;
 
-
       if (index > 9 && this.paginaIndex < this.totalPaginas) {
 
         this.coletarDados(this.paginaIndex + 1);
 
-        console.log("+ entrou " + this.listaIndex)
-
       }
       else if (index <= 9) {
         this.listaIndex = index;
-        localStorage.setItem("index", this.listaIndex.toString())
+        sessionStorage.setItem("index", this.listaIndex.toString())
       }
 
     }
@@ -81,9 +78,9 @@ export class ConteudoCapituloComponent {
         this.coletarDados(this.paginaIndex - 1);
 
       }
-      else if (index >= 0){
+      else if (index >= 0) {
         this.listaIndex = index;
-        localStorage.setItem("index", this.listaIndex.toString())
+        sessionStorage.setItem("index", this.listaIndex.toString())
       }
 
     }
@@ -103,16 +100,16 @@ export class ConteudoCapituloComponent {
 
           this.listaIndex = 9;
           this.paginaIndex = pagina;
-          localStorage.setItem("index", this.listaIndex.toString())
-          localStorage.setItem("pAtual", this.paginaIndex.toString());
+          sessionStorage.setItem("index", this.listaIndex.toString())
+          sessionStorage.setItem("pAtual", this.paginaIndex.toString());
         }
 
         else if (pagina > this.paginaIndex) {
 
           this.listaIndex = 0;
           this.paginaIndex = pagina;
-          localStorage.setItem("index", this.listaIndex.toString())
-          localStorage.setItem("pAtual", this.paginaIndex.toString());
+          sessionStorage.setItem("index", this.listaIndex.toString())
+          sessionStorage.setItem("pAtual", this.paginaIndex.toString());
         }
 
       },

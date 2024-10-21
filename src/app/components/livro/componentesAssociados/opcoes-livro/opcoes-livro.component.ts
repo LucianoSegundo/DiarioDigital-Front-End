@@ -19,7 +19,7 @@ export class OpcoesLivroComponent {
   livro: LivroResponse = { id: 0, titulo: "", numeroCapitulos: 0 };
 
   constructor(private api: AcessoApiService, private router: Router) {
-    this.livroID = localStorage.getItem("livroID");
+    this.livroID = sessionStorage.getItem("livroID");
     this.requirirLivro();
 
   }
@@ -36,7 +36,7 @@ export class OpcoesLivroComponent {
 
   excluirLivro() {
     if (this.formulario.valid && (this.formulario.value.senha == this.formulario.value.confsenha)) {
-      this.api.excluirLivro(this.livro.titulo, this.livroID as string).subscribe({
+      this.api.excluirLivro(this.formulario.value.senha as string, this.livroID as string).subscribe({
         next: (data) => {
           this.router.navigate(["/principal"]);
         },

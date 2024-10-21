@@ -103,7 +103,7 @@ app-button {
     color: var(--texto);
     background: var(--branco);
 
-     width: 70vw;
+    width: 70vw;
     min-height: 70vh;
     border-radius: 1.5vh;
     font-weight: 600;
@@ -134,7 +134,7 @@ app-button {
       align-items: center;
       flex-direction: column;
       justify-content: center;
-       border-radius: 1.5vh;
+      border-radius: 1.5vh;
       width: 50%;
       min-height: 70vh;
       padding: 2vh;
@@ -145,12 +145,12 @@ app-button {
   .form {
     margin: 8vh 0;
     min-width: 95%;
-    
-    p{
+
+    p {
       font-size: 2.3vh;
     }
     fieldset {
-      width: 100%;   
+      width: 100%;
       input {
         padding: 0.9vh;
         border-radius: 2vh;

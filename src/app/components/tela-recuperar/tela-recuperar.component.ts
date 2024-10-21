@@ -19,7 +19,7 @@ export class TelaRecuperarComponent {
   campoSenha: string = "borverde";
   campoPalavra: string = "borverde";
 
-  constructor(private api: AcessoApiService, private router: Router) {}
+  constructor(private api: AcessoApiService, private router: Router) { }
 
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -40,7 +40,6 @@ export class TelaRecuperarComponent {
       this.api.recuperarSenha(this.formulario.value as RecuperarSenhaRequest).subscribe({
         next: (data) => {
 
-          console.log('Sucesso na recuperação');
           setTimeout(() => {
             this.aguardando = false;
             this.telaLogin();

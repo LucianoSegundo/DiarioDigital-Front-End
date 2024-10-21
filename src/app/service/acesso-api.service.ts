@@ -25,7 +25,7 @@ export class AcessoApiService {
   constructor(private http: HttpClient, private router: Router) { }
 
   private createHeaders(): HttpHeaders {
-    const token: string = localStorage.getItem('token') || '';
+    const token: string = sessionStorage.getItem('token') || '';
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -46,7 +46,7 @@ export class AcessoApiService {
     return this.http.put<UsuarioResponse>(this.userUrl + '/recuperarSenha', usuario);
   }
   excluirUsuario(senha: string): Observable<any> {
-    return this.http.post<any>(this.userUrl + '/excluir', senha, { headers: this.createHeaders() });
+    return this.http.delete<any>(this.userUrl + '/excluir', { headers: this.createHeaders(), body: senha });
   }
 
   //Lidando com Livros
@@ -54,9 +54,11 @@ export class AcessoApiService {
   criarLivro(titulo: string): Observable<LivroResponse> {
     return this.http.post<LivroResponse>(this.livroUrl + '/criar', titulo, { headers: this.createHeaders() });
   }
-  excluirLivro(titulo: string, livroID: string): Observable<any> {
-    return this.http.post<any>(this.livroUrl + '/deletar/' + livroID, titulo, { headers: this.createHeaders() });
+
+  excluirLivro(senha: string, livroID: string): Observable<any> {
+    return this.http.delete<any>(this.livroUrl + '/deletar/' + livroID, { headers: this.createHeaders(), body: senha });
   }
+
   verificarLivro(livroId: number): Observable<LivroResponse> {
     return this.http.get<LivroResponse>(this.livroUrl + '/' + livroId, { headers: this.createHeaders() });
   }
@@ -65,22 +67,23 @@ export class AcessoApiService {
     return this.http.get<PaginacaoLivroResponse>(this.livroUrl + '/listar?pagina=' + pagina, { headers: this.createHeaders() });
   }
 
-  listarCapitulos(IdLivro: string, pagina: number = 0): Observable<PaginacaoCapituloResponse> {
-    return this.http.get<PaginacaoCapituloResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina +'&ordarPor=numeroCapitulo', { headers: this.createHeaders() });
-  }
+  //Lidando com Capitulos
 
   criarCapitulo(capitulo: CapituloRequest, IDlivro: string): Observable<CapituloResponse> {
     return this.http.post<CapituloResponse>(this.capituloUrl + '/' + IDlivro, capitulo, { headers: this.createHeaders() });
   }
 
-  //Lidando com Capitulos
+  listarCapitulos(IdLivro: string, pagina: number = 0): Observable<PaginacaoCapituloResponse> {
+    return this.http.get<PaginacaoCapituloResponse>(this.capituloUrl + '/listar/' + IdLivro + '?pagina=' + pagina + '&ordarPor=numeroCapitulo', { headers: this.createHeaders() });
+  }
+
 
   //Outros
 
   validarToken(error: HttpErrorResponse): boolean {
     if (error.status == 0) {
-
-      localStorage.clear();
+      
+      sessionStorage.clear();
       alert("De alguma forma não foi possivel se conectar ao servidor")
 
       setTimeout(() => {
@@ -90,13 +93,13 @@ export class AcessoApiService {
     }
     else if (error.status === 401) {
 
-      if (localStorage.getItem("token") != null) {
+      if (sessionStorage.getItem("token") != null) {
         alert("sessão expirou, necessário refazer o login");
       }
       else
         alert("é necessário estar logado para acessar este conteudo");
 
-      localStorage.clear();
+      sessionStorage.clear();
       setTimeout(() => {
         this.router.navigate(['/login']);
       }, 1000);

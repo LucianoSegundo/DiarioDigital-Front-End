@@ -61,15 +61,15 @@ main section {
     width: 50%;
   }
 }
-.erro{
-    &::placeholder{
-        color: tomato;
-    }
-    border: tomato;
+.erro {
+  &::placeholder {
     color: tomato;
+  }
+  border: tomato;
+  color: tomato;
 }
 
-p.semFundo{
+p.semFundo {
   background: none;
 }
 
@@ -80,5 +80,4 @@ p.semFundo{
     gap: 3%;
     padding: 2%;
   }
-  
 }

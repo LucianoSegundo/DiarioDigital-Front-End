@@ -33,7 +33,7 @@ export class PerfilComponent {
     if (this.formulario.valid && (this.formulario.value.senha == this.formulario.value.confsenha)) {
       this.api.excluirUsuario(this.formulario.value.senha as string).subscribe({
         next: (data) => {
-          localStorage.clear();
+          sessionStorage.clear();
           this.router.navigate(["/home"]);
         },
         error: (error: HttpErrorResponse) => {

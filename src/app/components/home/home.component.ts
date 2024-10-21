@@ -20,7 +20,7 @@ export class HomeComponent {
   erroForm: boolean = false;
   aguardando: boolean = false;
   suceesoform: boolean = false;
-  
+
   campoNome: string = "borverde";
   campoIdade: string = "borverde";
   campoSenha: string = "borverde";
@@ -72,12 +72,11 @@ export class HomeComponent {
       } else this.campoConfSenha = "borverde";
     }
     else if (this.formulario.get(alvo)?.hasError("required") || this.formulario.get(alvo)?.hasError("minlength") || this.formulario.get(alvo)?.hasError("min")) {
-      console.log("clicado")
+
       if (alvo == "nome") this.campoNome = "borVer";
       else if (alvo == "senha") this.campoSenha = "borVer";
       else if (alvo == "palavraSegu") this.campoPalavra = "borVer";
       else if (alvo == "idade") this.campoIdade = "borVer";
-
 
     } else {
       if (alvo == "nome") this.campoNome = "borverde";
@@ -89,7 +88,6 @@ export class HomeComponent {
   }
 
   sucessoCadas() {
-    console.log('Sucesso');
 
     this.aguardando = false;
     setTimeout(() => {
@@ -101,7 +99,7 @@ export class HomeComponent {
 
   erroCad(error: HttpErrorResponse) {
     {
-      console.error('Erro ao fazer a requisição: '+ error.error.message);
+      console.error('Erro ao fazer a requisição: ' + error.error.message);
       this.mensagemErro = error.error.message;
       this.erroForm = true;
       this.aguardando = false;

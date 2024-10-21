@@ -9,11 +9,11 @@
     </section>
     <section class="usuario">
         @if (localizacao == "/perfil") {
-            <app-button mensagem="voltar" imagem="voltar.png" classe="bicone" (submit)="botaoVoltar()"></app-button>
-   
-           }
+        <app-button mensagem="voltar" imagem="voltar.png" classe="bicone" (submit)="botaoVoltar()"></app-button>
+
+        }
         @if (router.url.includes("/principal") || router.url.includes("/livros")) {
-         <app-button mensagem="perfil" imagem="usuario.png" classe="bicone" (submit)="botaoPerfil()"></app-button>
+        <app-button mensagem="perfil" imagem="usuario.png" classe="bicone" (submit)="botaoPerfil()"></app-button>
 
         }
         @else if((localizacao != "/login") && (localizacao != "/recuperar")&& (localizacao != "/perfil"))
