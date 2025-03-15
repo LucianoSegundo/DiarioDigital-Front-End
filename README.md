@@ -59,66 +59,66 @@ classDiagram
 
 ### Homepage Parte 01
 
-![pagina01](imagens/pagina01.png)
+![pagina01](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina01.png)
 
 ### Homepage Parte 02: Cadastro
 
-![pagina02](imagens/pagina02.png)
+![pagina02](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina02.png)
 
 ### Pagina de Login
 
-![pagina03](imagens/pagina03.png)
+![pagina03](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina03.png)
 
 ### Pagina de Login Aguardando resposta do Back-End
 
-![pagina04](imagens/pagina04.png)
+![pagina04](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina04.png)
 
 ### Pagina de Login Negado
 
-![pagina05](imagens/pagina05.png)
+![pagina05](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina05.png)
 
 ### Pagina de Recuperação de Senha
 
-![pagina06](imagens/pagina06.png)
+![pagina06](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina06.png)
 
 ### Pagina Principal Sem Nenhum Livro
 
-![pagina07](imagens/pagina07.png)
+![pagina07](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina07.png)
 
 ### Pagina Principal + Criação de Livro
 
-![pagina08](imagens/pagina08.png)
+![pagina08](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina08.png)
 
 ### Pagina Principal com Livro
 
-![pagina09](imagens/pagina09.png)
+![pagina09](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina09.png)
 
 ### Pagina do Livro Selecionado sem Capitulos
 
-![pagina10](imagens/pagina10.png)
+![pagina10](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina10.png)
 
 ### Pagina de Exclusão de Livros
 
-![pagina11](imagens/pagina11.png)
+![pagina11](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina11.png)
 
 ### Pagina de Criação de Capitulos
 
-![pagina12](imagens/pagina12.png)
+![pagina12](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina12.png)
 
 ### Pagina do Livro Selecionado com Capitulos
 
-![pagina13](imagens/pagina13.png)
+![pagina13](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina13.png)
 
 ### Pagina de Leitura de Capitulo
 
-![pagina14](imagens/pagina14.png)
+![pagina14](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina14.png)
 
 ### Pagina Pagina de Exclusão de Capitulo + Aviso de Fim de Sessão
 
-![pagina15](imagens/pagina15.png)
+![pagina15](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina15.png)
 
 ### Pagina de Exclusão de Conta
-![pagina16](imagens/pagina16.png)
+![pagina16](https://github.com/LucianoSegundo/DiarioDIgital/blob/main/imagens/pagina16.png)
 
 ## Banco de Dados
 Em produção foi usado um banco PostGreSQL, o banco fornecido pelo serviço de hospedagem gratuita.
